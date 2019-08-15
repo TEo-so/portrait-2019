@@ -1,7 +1,9 @@
 <template>
  <div class="home">
    <img class="background" src="../assets/images/home.png">
-   <p class="button">开始</p>
+ <router-link to = '/question'>
+  <p class="button">开始答题</p>
+  </router-link>
      
  </div>
 
@@ -14,17 +16,21 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.background{
+.home{
     width: 750px;
-    height: 1334px;
+    height: auto;
+}
+.background{
+    width: 100%;
 }
 .button{
    color: #ffffff ;
    position: fixed; 
-   top: 1100px;
+   top: 1070px;
    left: 610px;   
    writing-mode: vertical-lr;
-   font-size:40px
+   font-size:40px;
+   font-family: "themeWord"
 }
 
 
