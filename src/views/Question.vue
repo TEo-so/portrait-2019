@@ -1,89 +1,71 @@
 <template>
-   <div class="question">
-       <div class="questionIndex">
-           <p class="number">NO.1</p>
-       </div> 
+  <div class="question">
+    <div class="box">
+      <div class="questionIndex">
+        <img src="../assets/images/questionIndex.png" />
+        <p class="number">NO.1</p>
+      </div>
 
-       <div class="questionbox"></div>
-      
-
-       <div class="action">
-           <div class="back">
-               <p>首页</p>
-            </div>
-           <div class="next"></div>
-       </div>
-       
-   </div> 
+      <QuestionBox />
+      <AnswerBox />
+      <AnswerDecoration />
+      <QuestionAction />
+    </div>
+  </div>
 </template>
 
 <script>
-
+import QuestionBox from "@/components/QuestionBox.vue";
+import AnswerBox from "@/components/AnswerBox.vue";
+import AnswerDecoration from "@/components/AnswerDecoration.vue";
+import QuestionAction from "@/components/QuestionAction.vue";
 export default {
-
-}
+  components: {
+    QuestionBox,
+    AnswerBox,
+    AnswerDecoration,
+    QuestionAction
+  }
+};
 </script>
 
 <style lang="less" scoped>
-.question{
-    width: 750px;
-    height: 1334px;
-    background: url('../assets/images/question-background.png') no-repeat
-}
+.question {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: #fff4d2;
+  .box {
+    margin-top: 170px;
+    background: url("../assets/images/questionBox.png");
+    background-size: 100%;
+    width: 738px;
+    height: 1055px;
 
-.questionIndex{
-        width:245px;
-        height:134px;
-        background:url('../assets/images/questionIndex.png');
+    .questionIndex {
+      display: flex;
+      align-items: center;
+
+      background-size: 100%;
+
+      img {
+        width: 245px;
+        height: 134px;
+        z-index: 4;
+      }
+
+      .number {
+        font-family: "themeWord";
+        font-size: 60px;
+        font-weight: 500;
         position: relative;
-        top:165px;
-        left:30px;
-        display: flex;
-        align-items: center;
-        z-index: 3
+        right: 160px;
+        z-index: 5;
+      }
     }
-
-.number{
-    font-family: "themeWord";
-    font-size: 60px;
-    margin-left: 80px;
-    font-weight: 500
+  }
 }
-
-.action{
-    display: flex;
-    position: fixed;
-    top:1180px;
-    left:50px;
-
-}
-.back ,.next {
-    width: 183px;
-    height: 85px;
-}
-.back{
-    background: url('../assets/images/back.png');
-    margin-right:225px;
-    display: flex;
-    align-items: center;
-    
-}
-.back p{
-    font-family: 'themeWord';
-    color: #ffffff;
-    font-size: 40px;
-    margin-left:45px;
-}
-.next{
-    background: url('../assets/images/next.png')
-}
-
-.questionbox{
-     width: 730px;
-     height: 370px;
-     background:url('../assets/images/questionBox.png');
-     position: relative;
-     top: 120px
-    
- }
 </style>
