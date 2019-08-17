@@ -1,15 +1,33 @@
 <template>
     <div class="questionContent">
       <div class="content">
-      <p>中秋即将来临，</p>
-      <p>你最喜欢的月饼口味？</p>
+      <p>{{content[index-1][0]}}</p>
+      <p>{{content[index-1][1]}}</p>
       </div>
     </div>
 </template>
 
 <script>
 export default {
-    
+    props:{
+      content:{
+        type:Array,
+        required:true
+      },
+      index:{
+        type:Number,
+        required:true
+      }
+     
+    },
+    // computed:{
+    //   index(){
+    //     return this.$store.state.question.questionIndex
+    //   }
+
+      
+    // }
+  
 }
 </script>
 

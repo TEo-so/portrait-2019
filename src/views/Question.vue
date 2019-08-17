@@ -3,13 +3,19 @@
     <div class="box">
       <div class="questionIndex">
         <img src="../assets/images/questionIndex.png" />
-        <p class="number">NO.1</p>
+        <p class="number">NO.{{questionIndex}}</p>
       </div>
 
-      <QuestionBox />
-      <AnswerBox />
-      <AnswerDecoration />
-      <QuestionAction />
+      <QuestionBox 
+      :index = "questionIndex"
+      :content="content" />
+      <AnswerBox
+      :answerIndex = "questionIndex" 
+      :answer="answer" />
+      <AnswerDecoration 
+      :index = "questionIndex"/>
+      <QuestionAction 
+      :index = "questionIndex"/>
     </div>
   </div>
 </template>
@@ -19,12 +25,26 @@ import QuestionBox from "@/components/QuestionBox.vue";
 import AnswerBox from "@/components/AnswerBox.vue";
 import AnswerDecoration from "@/components/AnswerDecoration.vue";
 import QuestionAction from "@/components/QuestionAction.vue";
+
+// import { mapState } from 'vuex'
+
 export default {
   components: {
     QuestionBox,
     AnswerBox,
     AnswerDecoration,
     QuestionAction
+  },
+  computed: {
+    questionIndex() {
+      return this.$store.state.question.questionIndex;
+    },
+    content() {
+      return this.$store.state.question.content;
+    },
+    answer() {
+      return this.$store.state.question.answer;
+    }
   }
 };
 </script>
