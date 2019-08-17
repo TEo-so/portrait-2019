@@ -8,7 +8,7 @@
     </ul>
 
     <ul class="type2" v-if="isType2">
-      <li v-for="(item,index) in answer[answerIndex-1]" :key="index" @click="choose(index)">
+      <li v-for="(item,index) in answer[answerIndex-1]" :key="index" @click="choose(index)" >
         <div>
           <img :src="item[1]" />
         </div>
@@ -34,7 +34,7 @@ export default {
   },
  
   computed: {
-    ...mapGetters(['choosedNum']),
+    ...mapGetters(['choosedNum'],['choosedList']),
     isType1() {
       if (
         this.answerIndex == 1 ||

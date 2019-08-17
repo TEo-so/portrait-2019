@@ -6,13 +6,13 @@
     </div>
     <div class="next">
       <p v-if="index == 5 ">提交</p>
-      <p v-else @click="addIndex()">下一题</p>
+      <p v-else @click="addIndex(choosedNum)">下一题</p>
     </div>
   </div>
 </template>
 
 <script>
-
+import { mapGetters } from "vuex";
 import { ADD_INDEX, REDUCE_INDEX } from "@/store/type/mutations.js";
 export default {
   props: {
@@ -22,14 +22,15 @@ export default {
     }
   },
   methods: {
-    addIndex() {
-      this.$store.commit(ADD_INDEX);
-      
-
+    addIndex(choosedNum) {
+      this.$store.commit(ADD_INDEX,choosedNum);
     },
     reduceIndex() {
       this.$store.commit(REDUCE_INDEX);
     }
+  },
+  computed:{
+    ...mapGetters(['choosedNum'])
   }
 };
 </script>
