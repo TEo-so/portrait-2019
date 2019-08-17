@@ -1,11 +1,10 @@
 <template>
   <div class="home">
-    <img class="background" src="../assets/images/home.png" />
-
-    <router-link to = "/question">
-    <img class="enter" src="../assets/images/enter.png">
-    </router-link>
-    
+    <div class="book">
+      <router-link to="/question">
+        <img class="enter" src="../assets/images/enter.png" />
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -21,19 +20,24 @@ export default {};
   left: 0;
   height: 100%;
   width: 100%;
-  .background {
-    width: 100%;
-    height: 100%;
-    display: block;
+  background: url("../assets/images/home.png");
+  background-size: cover;
+
+  .book {
+    background: url("../assets/images/book.png");
+    width: 744px;
+    height: 1011px;
+    background-size: 100%;
+    position: absolute;
+    bottom: 15%;
+
   }
   .enter {
     width: 134px;
-    height:218px;
+    height: 218px;
     position: fixed;
-    top:1100px;
-    left: 500px;
-   
-    
+    top: 78%;
+    left: 70%;   
   }
 }
 </style>
