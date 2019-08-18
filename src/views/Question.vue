@@ -59,7 +59,7 @@ export default {
   width: 100%;
   background: #fff4d2;
   .box {
-    margin-top: 170px;
+    margin-top: 100px;
     background: url("../assets/images/questionBox.png");
     background-size: 100%;
     width: 738px;

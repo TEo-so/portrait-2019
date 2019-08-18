@@ -39,7 +39,7 @@ export default {
 .action {
   display: flex;
   position: fixed;
-  top: 1180px;
+  top: 1090px;
   left: 50px;
 }
 .back,
