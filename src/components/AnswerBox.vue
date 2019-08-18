@@ -3,12 +3,11 @@
     <ul class="type1" v-if="isType1">
       <li v-for="(item,index) in answer[answerIndex-1]" :key="index" @click="choose(index)">
         <p :class="{'choosed':choosedNum == index }">{{item}}</p>
-       
       </li>
     </ul>
 
     <ul class="type2" v-if="isType2">
-      <li v-for="(item,index) in answer[answerIndex-1]" :key="index" @click="choose(index)" >
+      <li v-for="(item,index) in answer[answerIndex-1]" :key="index" @click="choose(index)">
         <div>
           <img :src="item[1]" />
         </div>
@@ -19,8 +18,8 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import {CHOOSED_NUMBER} from '../store/type/mutations'
+import { mapGetters } from "vuex";
+import { CHOOSED_NUMBER } from "../store/type/mutations";
 export default {
   props: {
     answer: {
@@ -32,9 +31,9 @@ export default {
       require: true
     }
   },
- 
+
   computed: {
-    ...mapGetters(['choosedNum'],['choosedList']),
+    ...mapGetters(["choosedNum"], ["choosedList"]),
     isType1() {
       if (
         this.answerIndex == 1 ||
@@ -45,13 +44,11 @@ export default {
     },
     isType2() {
       if (this.answerIndex == 2 || this.answerIndex == 4) return true;
-    },
-   
-   
+    }
   },
   methods: {
     choose(index) {
-     this.$store.commit(CHOOSED_NUMBER,index)
+      this.$store.commit(CHOOSED_NUMBER, index);
     }
   }
 };
@@ -88,12 +85,10 @@ export default {
     }
     p {
       white-space: nowrap;
-     
     }
-    
   }
 }
 .choosed {
-      color: #cf5e36;
-    }
+  color: #cf5e36;
+}
 </style>
