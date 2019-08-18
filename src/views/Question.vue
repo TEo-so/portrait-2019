@@ -64,6 +64,8 @@ export default {
     background-size: 100%;
     width: 738px;
     height: 1055px;
+    
+
 
     .questionIndex {
       display: flex;

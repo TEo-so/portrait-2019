@@ -44,7 +44,15 @@ const ApiService = {
 export default ApiService;
 
 export const ResultService = {
-    getResult (params) {
-        return ApiService.post(`result`,params)
+    getAnswer (params) {
+        return ApiService.post(`answer`,params)
+    }
+}
+
+//openid 放在头部 得到是否为初次测试的结果 
+//返回参数为
+export const JudgeService = {
+    getJudge(){
+      return ApiService.get(`main`)
     }
 }

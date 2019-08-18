@@ -1,10 +1,17 @@
 import {
     ADD_INDEX,
     REDUCE_INDEX,
-    CHOOSED_NUMBER
-}
-    from './type/mutations'
+    CHOOSED_NUMBER,
+    SET_ANSWER
+} from './type/mutations'
 
+import {
+    FETCH_ANSWER, 
+}from './type/actions'
+
+import {
+    ResultService
+} from '../common/service/api.js'
 const initialState = {
     questionIndex: 1,
     content: [
@@ -24,7 +31,8 @@ const initialState = {
         ['A. 哪吒之魔童降世', 'B. 全职高手之巅峰荣耀', 'C. 速度与激情：特别任务', 'D. 烈火英雄']
     ],
     choosedNum: null,
-    choosedList: []
+    choosedList: [],
+    answerBack:{}
 }
 
 const state = { ...initialState }
@@ -50,7 +58,20 @@ const mutations = {
         state.choosedNum = data
         let questionIndex = state.questionIndex
         state.choosedList[questionIndex] = data + 1
+    },
+    [SET_ANSWER](state,data){
+        state.answerBack = data
     }
+    
+}
+
+const actions = {
+    async[FETCH_ANSWER]({commit},choosedList){
+        let {data} = await ResultService.getAnswer(choosedList)
+        commit(SET_ANSWER,data)
+
+    }
+
 }
 
 const getters = {
@@ -67,5 +88,6 @@ const getters = {
 export default {
     state,
     mutations,
+    actions,
     getters
 }
