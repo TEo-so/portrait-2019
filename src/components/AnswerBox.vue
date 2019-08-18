@@ -6,7 +6,7 @@
       </li>
     </ul>
 
-    <ul class="type2" v-if="isType2">
+    <ul class="type2" v-else>
       <li v-for="(item,index) in answer[answerIndex-1]" :key="index" @click="choose(index)">
         <div>
           <img :src="item[1]" />
@@ -41,18 +41,12 @@ export default {
         this.answerIndex == 5
       ) {
         return true;
-      } else {
-        return false;
+      }else{
+        return false
       }
     }
   },
-  isType2() {
-    if (this.answerIndex == 2 || this.answerIndex == 4) {
-      return true;
-    } else {
-      return false;
-    }
-  },
+
   methods: {
     choose(index) {
       this.$store.commit(CHOOSED_NUMBER, index);
