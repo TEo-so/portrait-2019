@@ -1,15 +1,35 @@
 <template>
   <div class="home">
     <div class="book">
-      <router-link to="/question">
-        <img class="enter" src="../assets/images/enter.png" />
-      </router-link>
+    
+        <img class="enter" 
+        src="../assets/images/enter.png"
+        @click = "getEntrance()" />
+    
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import { mapGetters } from 'vuex'
+import {FETCH_JUDGEMENT, FETCH_OLD_AMSWER} from '../store/type/actions'
+export default {
+  computed:{
+    ...mapGetters(['judgeInformation'])
+  },
+  methods:{
+    getEntrance(){
+      this.$store.dispatch(FETCH_JUDGEMENT)
+      let judgement = this.judgeInformation.judgement
+      if(judgement == 0 ){
+        this.$router.push({name:'question'})
+      }else{
+        this.$router.push({name:'result'})
+        this.$store.dispatch(FETCH_OLD_AMSWER)
+      }
+    }
+  }
+};
 </script>
 
 <style lang="less" scoped>

@@ -66,6 +66,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import html2canvas from "html2canvas";
 export default {
   methods: {
@@ -92,6 +93,9 @@ export default {
       isShare:true,
      
     }
+  },
+  computed:{
+    ...mapGetters(['answerBack'])
   }
 };
 </script>

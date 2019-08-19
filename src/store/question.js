@@ -2,11 +2,12 @@ import {
     ADD_INDEX,
     REDUCE_INDEX,
     CHOOSED_NUMBER,
-    SET_ANSWER
+    SET_FIRST_ANSWER,
+    SET_OLD_ANSWER
 } from './type/mutations'
 
 import {
-    FETCH_ANSWER, 
+    FETCH_FIRST_ANSWER, FETCH_OLD_AMSWER, 
 }from './type/actions'
 
 import {
@@ -59,17 +60,24 @@ const mutations = {
         let questionIndex = state.questionIndex
         state.choosedList[questionIndex] = data + 1
     },
-    [SET_ANSWER](state,data){
+    [SET_FIRST_ANSWER](state,data){
+        state.answerBack = data
+    },
+    [SET_OLD_ANSWER](state,data){
         state.answerBack = data
     }
     
 }
 
 const actions = {
-    async[FETCH_ANSWER]({commit},choosedList){
-        let {data} = await ResultService.getAnswer(choosedList)
-        commit(SET_ANSWER,data)
+    async[FETCH_FIRST_ANSWER]({commit},choosedList){
+        let {data} = await ResultService.getFirstAnswer(choosedList)
+        commit(SET_FIRST_ANSWER,data)
 
+    },
+    async[FETCH_OLD_AMSWER]({commit}){
+        let {data} = await ResultService.getOldAnswer()
+        commit(SET_OLD_ANSWER,data)
     }
 
 }
@@ -80,6 +88,9 @@ const getters = {
     },
     choosedList() {
         return state.choosedList
+    },
+    answerBack(){
+        return state.answerBack
     }
 }
 
