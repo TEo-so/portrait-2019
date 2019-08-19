@@ -18,7 +18,7 @@ export default {};
   left: 0;
   height: 100%;
   width: 100%;
-  background: url("../assets/images/loading.png");
+  background: url("~@/assets/images/loading.png");
   background-size: cover;
   .camera{
       width: 720px;

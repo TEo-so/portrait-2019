@@ -50,7 +50,7 @@ export default {
   align-items: center;
 }
 .back {
-  background: url("../assets/images/back.png");
+  background: url("~@/assets/images/back.png");
   margin-right: 225px;
   background-size: 100%;
   p {
@@ -62,7 +62,7 @@ export default {
 }
 
 .next {
-  background: url("../assets/images/next.png");
+  background: url("~@/assets/images/next.png");
   background-size: 100%;
   p {
     font-family: "themeWord";

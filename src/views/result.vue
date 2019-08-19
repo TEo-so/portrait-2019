@@ -108,7 +108,7 @@ export default {
   left: 0;
   height: 1751px;
   width: 100%;
-  background: url("../assets/images/result.png");
+  background: url("~@/assets/images/result.png");
   background-size: cover;
 }
 .action {
@@ -123,12 +123,12 @@ export default {
   height: 86px;
 }
 .testAgain {
-  background: url("../assets/images/testAgain.png");
+  background: url("~@/assets/images/testAgain.png");
   background-size: 100%;
   margin-right: 160px;
 }
 .refresh {
-  background: url("../assets/images/refresh.png");
+  background: url("~@/assets/images/refresh.png");
   background-size: 100%;
 }
 .screenshot{
@@ -154,7 +154,7 @@ export default {
   .name {
     width: 316px;
     height: 88px;
-    background: url("../assets/images/nickname.png");
+    background: url("~@/assets/images/nickname.png");
     background-size: 100%;
     font-family: "themeWord";
     color: #dcbb94;

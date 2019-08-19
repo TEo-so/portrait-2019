@@ -34,7 +34,7 @@ export default {
 <style lang="less" scoped>
  
   .questionContent {
-      background: url("../assets/images/questionContent.png") no-repeat;
+      background: url("~@/assets/images/questionContent.png") no-repeat;
       background-size: 100%;
       width: 730px;
       height: 370px;

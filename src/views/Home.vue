@@ -40,11 +40,11 @@ export default {
   left: 0;
   height: 100%;
   width: 100%;
-  background: url("../assets/images/home.png");
+  background: url("~@/assets/images/home.png");
   background-size: cover;
 
   .book {
-    background: url("../assets/images/book.png");
+    background: url("~@/assets/images/book.png");
     width: 744px;
     height: 1011px;
     background-size: 100%;

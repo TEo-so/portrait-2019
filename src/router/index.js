@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 
-const Home = () => import('@/views/Home.vue')
+import Home from '@/views/Home.vue'
 const Question = () => import('@/views/Question.vue')
 const Loading = () => import('@/views/Loading.vue')
 const Result = () => import('@/views/result.vue')
