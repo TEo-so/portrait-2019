@@ -6,27 +6,20 @@
         <p class="number">NO.{{questionIndex}}</p>
       </div>
 
-      <QuestionBox 
-      :index = "questionIndex"
-      :content="content" />
-      <AnswerBox
-      :answerIndex = "questionIndex" 
-      :answer="answer" />
-      <AnswerDecoration 
-      :index = "questionIndex"/>
-      <QuestionAction 
-      :index = "questionIndex"/>
+      <QuestionBox :index="questionIndex" :content="content" />
+      <AnswerBox :answerIndex="questionIndex" :answer="answer" />
+      <AnswerDecoration :index="questionIndex" />
+      <QuestionAction :index="questionIndex" />
     </div>
   </div>
 </template>
 
 <script>
-import QuestionBox from "@/components/QuestionBox.vue";
-import AnswerBox from "@/components/AnswerBox.vue";
-import AnswerDecoration from "@/components/AnswerDecoration.vue";
-import QuestionAction from "@/components/QuestionAction.vue";
+const QuestionBox = () => import("@/components/QuestionBox.vue");
+const AnswerBox = () => import("@/components/AnswerBox.vue");
+const AnswerDecoration = () => import("@/components/AnswerDecoration.vue");
+const QuestionAction = () => import("@/components/QuestionAction.vue");
 
-// import { mapState } from 'vuex'
 
 export default {
   components: {
@@ -64,8 +57,6 @@ export default {
     background-size: 100%;
     width: 738px;
     height: 1055px;
-    
-
 
     .questionIndex {
       display: flex;
