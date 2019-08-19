@@ -3,7 +3,7 @@
     <div class="book">
     
         <img class="enter" 
-        src="../assets/images/enter.png"
+        src="@/assets/images/enter.png"
         @click = "getEntrance()" />
     
     </div>

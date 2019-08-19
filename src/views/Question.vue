@@ -2,7 +2,7 @@
   <div class="question">
     <div class="box">
       <div class="questionIndex">
-        <img src="../assets/images/questionIndex.png" />
+        <img src="@/assets/images/questionIndex.png" />
         <p class="number">NO.{{questionIndex}}</p>
       </div>
 

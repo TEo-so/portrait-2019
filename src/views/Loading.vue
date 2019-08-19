@@ -1,7 +1,7 @@
 <template>
   <div class="loading">
       <img class = "camera"
-      src="../assets/images/camera.png">
+      src="@/assets/images/camera.png">
       <p> 画像绘制中 ...</p>
   </div>
 </template>

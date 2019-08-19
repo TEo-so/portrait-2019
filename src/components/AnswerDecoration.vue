@@ -1,11 +1,11 @@
 <template>
   <div class="decoration">
     <img class="mooncake" 
-    v-if="index == 1" src="../assets/images/mooncake.png" />
+    v-if="index == 1" src="@/assets/images/mooncake.png" />
     <img class="pillow"
-    v-if="index == 3" src="../assets/images/pillow.png" />
+    v-if="index == 3" src="@/assets/images/pillow.png" />
     <img class="movie"
-    v-if="index == 5" src="../assets/images/movie.png" />
+    v-if="index == 5" src="@/assets/images/movie.png" />
   </div>
 </template>
 

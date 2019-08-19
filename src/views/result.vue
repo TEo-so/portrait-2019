@@ -56,8 +56,8 @@
     
 
     <div class="share">
-      <img  v-if = "isShare" @click="getImage()" src="../assets/images/share.png" />
-      <img  v-else  src="../assets/images/QRcode.png">
+      <img  v-if = "isShare" @click="getImage()" src="@/assets/images/share.png" />
+      <img  v-else  src="@/assets/images/QRcode.png">
     </div>
 
     <p class="end">"邮"你,发现更多可能</p>

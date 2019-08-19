@@ -24,11 +24,11 @@ const initialState = {
     ],
     answer: [
         ['A. 水果月饼', 'B. 莲蓉蛋黄月饼', 'C. 五仁月饼', 'D. 猪肉月饼'],
-        [['A. 球类', "./images/2.A.png"], ['B. 健身', './images/2.B.png'],
-        ['C. 电竞', './images/2.C.png'], ['D. 田径', './images/2.D.png']],
+        [['A. 球类', "./img/2.A.png"], ['B. 健身', './img/2.B.png'],
+        ['C. 电竞', './img/2.C.png'], ['D. 田径', './img/2.D.png']],
         ['A. 10:00之前', 'B. 10:00-12:00', 'C. 12:00-2：00', 'D. 2:00之后'],
-        [['A. 技术宅', './images/4.A.png'], ['B. 文艺青年', './images/4.B.png'],
-        ['C. 佛系代表', './images/4.C.png'], ['D. 二次元', './images/4.D.png']],
+        [['A. 技术宅', './img/4.A.png'], ['B. 文艺青年', './img/4.B.png'],
+        ['C. 佛系代表', './img/4.C.png'], ['D. 二次元', './img/4.D.png']],
         ['A. 哪吒之魔童降世', 'B. 全职高手之巅峰荣耀', 'C. 速度与激情：特别任务', 'D. 烈火英雄']
     ],
     choosedNum: null,
