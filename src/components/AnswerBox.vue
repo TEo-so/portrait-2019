@@ -6,7 +6,11 @@
       </li>
     </ul>
 
+<<<<<<< HEAD
     <ul class="type2" v-else>
+=======
+    <ul class="type2" v-if="isType2">
+>>>>>>> 8b1574f0fb7b510c8204b216ecb8e940bd21da65
       <li v-for="(item,index) in answer[answerIndex-1]" :key="index" @click="choose(index)">
         <div>
           <img :src="item[1]" />
@@ -41,9 +45,15 @@ export default {
         this.answerIndex == 5
       ) {
         return true;
+<<<<<<< HEAD
       }else{
         return false
       }
+=======
+    },
+    isType2() {
+      if (this.answerIndex == 2 || this.answerIndex == 4) return true;
+>>>>>>> 8b1574f0fb7b510c8204b216ecb8e940bd21da65
     }
   },
 
