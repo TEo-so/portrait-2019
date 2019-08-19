@@ -6,12 +6,7 @@
     </div>
     <div ref="containshot" class="containshot"></div>
     <div ref="screenshot" class="screenshot">
-      <div class="nickname">
-        <p class="name">
-          <input />
-        </p>
-        <p class="rest">的画像</p>
-      </div>
+      <div class="nickname">我的自画像</div>
 
       <p class="portrait">
         生活中的你随和安静，在超越自己的另一个赛场上，
@@ -28,74 +23,80 @@
         <ul>
           <li>
             <span class="option">莲蓉蛋黄</span>
-            <span class="dots">。。。。。。。。。。</span>
+            <div class="dots">...............</div>
             <span class="rate">50%</span>
           </li>
           <li>
             <span class="option">球类</span>
-            <span class="dots">。。。。。。。。。。</span>
+            <span class="dots">...............</span>
             <span class="rate">50%</span>
           </li>
           <li>
             <span class="option">10：00-12：00</span>
-            <span class="dots">。。。。。。。。。。</span>
+            <span class="dots">...............</span>
             <span class="rate">50%</span>
           </li>
           <li>
             <span class="option">佛系代表</span>
-            <span class="dots">。。。。。。。。。。</span>
+            <span class="dots">...............</span>
             <span class="rate">50%</span>
           </li>
           <li>
             <span class="option">哪吒大闹东宫</span>
-            <span class="dots">。。。。。。。。。。</span>
+            <span class="dots">...............</span>
             <span class="rate">50%</span>
           </li>
         </ul>
       </div>
-    
 
-    <div class="share">
-      <img  v-if = "isShare" @click="getImage()" src="@/assets/images/share.png" />
-      <img  v-else  src="@/assets/images/QRcode.png">
-    </div>
+      <div class="share">
+        <img v-if="isShare" @click="getImage()" src="@/assets/images/share.png" />
+        <img v-else src="@/assets/images/QRcode.png" />
+      </div>
 
-    <p class="end">"邮"你,发现更多可能</p>
+      <p class="end">"邮"你,发现更多可能</p>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 import html2canvas from "html2canvas";
+import { setTimeout } from 'timers';
+
 export default {
   methods: {
     getImage() {
       this.isShare = false;
-      this.$nextTick(function(){
+      this.$nextTick(function() {
         html2canvas(this.$refs.screenshot, {
-        backgroundColor: "#f7f0de"
-      }).then(canvas => {
-        this.$refs.containshot.append(canvas);
-        let link = document.createElement("a");
-        link.href = canvas.toDataURL();
-        link.setAttribute("download", "图片canvas.png");
-        link.style.display = "none";
-        document.body.appendChild(link);
-        link.click();
-      })
-      }
-      );
+          backgroundColor: "#f7f0de",y:160
+        }).then(canvas => {
+          this.$refs.containshot.append(canvas);
+          let link = document.createElement("a");
+          link.href = canvas.toDataURL();
+          link.setAttribute("download", "图片canvas.png");
+          link.style.display = "none";
+          document.body.appendChild(link);
+          link.click();
+          this.isShare = true;
+        });
+      });
+      setTimeout(function(){
+          let node = document.getElementsByClassName('containshot')[0];
+          node.removeChild(node.childNodes[0])
+        },3000
+      )
     }
   },
-  data(){
-    return{
-      isShare:true,
-     
-    }
+  data() {
+    return {
+      isShare: true,
+      nickname: "红岩网校"
+    };
   },
-  computed:{
-    ...mapGetters(['answerBack'])
+  computed: {
+    ...mapGetters(["answerBack"])
   }
 };
 </script>
@@ -131,47 +132,34 @@ export default {
   background: url("~@/assets/images/refresh.png");
   background-size: 100%;
 }
-.screenshot{
+.screenshot {
   width: 700px;
   margin: 0 auto;
 
+ 
+ 
+
 }
-.containshot{
+.containshot {
   width: 700px;
-  margin-top:20px;
-  left:50%;
-  transform:translateX(-50%);
   position: absolute;
   z-index: 99;
+  left: 50%;
+  transform: translateX(-50%)
+ 
+
+ 
 }
 
 .nickname {
-  display: flex;
-  align-items: center;
   margin: 0 auto;
+  margin-top: 15px;
   width: 450px;
-
-  .name {
-    width: 316px;
-    height: 88px;
-    background: url("~@/assets/images/nickname.png");
-    background-size: 100%;
-    font-family: "themeWord";
-    color: #dcbb94;
-    font-size: 40px;
-    margin-top: 10px;
-    letter-spacing: 3px;
-    input {
-      background: none;
-    }
-  }
-  .rest {
-    color: #3c260c;
-    font-family: "themeWord";
-    font-size: 55px;
-    font-weight: 600;
-    white-space: nowrap;
-  }
+  font-family: "themeWord";
+  color: #dcbb94;
+  font-size: 50px;
+  letter-spacing: 3px;
+  text-align: center
 }
 
 .portrait {
@@ -179,7 +167,7 @@ export default {
   width: 530px;
   margin: 0 auto;
   font-size: 30px;
-  margin-top: 50px;
+  margin-top: 30px;
   line-height: 45px;
 }
 
@@ -191,8 +179,7 @@ export default {
   margin: 0 auto;
   margin-top: 40px;
   white-space: nowrap;
-  width:300px;
-  
+  width: 300px;
 }
 
 .analyze {
@@ -201,13 +188,19 @@ export default {
   font-size: 40px;
   margin: 0 auto;
   margin-top: 50px;
-  width:500px;
+  width: 500px;
 }
 .analyze li {
   margin-bottom: 45px;
+  display: flex;
   .option {
     position: absolute;
     background: #f5f1ee;
+  }
+  .dots {
+    position: relative;
+    bottom: 8px;
+    letter-spacing: 20px;
   }
 }
 .share {
@@ -223,6 +216,7 @@ export default {
   width: 240px;
   margin: 0 auto;
   margin-top: 10px;
+  padding-bottom:60px;
   white-space: nowrap;
   color: #565f5e;
 }
