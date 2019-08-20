@@ -1,6 +1,8 @@
 <template>
   <div class="question">
-    <div class="box" ref="box" :class="{animated:isAnimated}">
+    <div class="box" ref="box" >
+
+      <div class="page" :class="{animated:isAnimated}">
       <div class="questionIndex">
         <img src="@/assets/images/questionIndex.png" />
         <p class="number">NO.{{questionIndex}}</p>
@@ -10,6 +12,8 @@
       <AnswerBox :answerIndex="questionIndex" :answer="answer" />
       <AnswerDecoration :index="questionIndex" />
       <QuestionAction :index="questionIndex" @turnPage="turnPage" />
+    </div>
+
     </div>
   </div>
 </template>
@@ -64,10 +68,20 @@ export default {
 <style lang="less" scoped>
 //动画
 .animated{
-  animation:turnPage 1s infinite;
+  animation:turnPage 1s 1;
   transform-style: preserve-3d;
   backface-visibility: hidden;
 
+}
+.page{
+  width: 700px;
+  height: 980px;
+  transform-origin:0 10%;
+  background:#FFF6E3 ;
+  position: relative;
+  top: 35px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 @keyframes turnPage {
   0% {
@@ -96,7 +110,7 @@ export default {
     width: 738px;
     height: 1055px;
     position: relative;
-    transform-origin:0 10%;
+    perspective: 3000px;
 
     .questionIndex {
       display: flex;

@@ -14,6 +14,7 @@
 <script>
 import { mapGetters } from "vuex";
 import { ADD_INDEX, REDUCE_INDEX } from "@/store/type/mutations.js";
+import { setTimeout } from 'timers';
 export default {
   props: {
     index: {
@@ -23,17 +24,18 @@ export default {
   },
   methods: {
     addIndex(choosedNum) {
-      this.$emit('turnPage')
-      this.$store.commit(ADD_INDEX,choosedNum);
-     
-      
+      this.$emit("turnPage")
+      setTimeout(
+        () =>{
+         this.$store.commit(ADD_INDEX, choosedNum);
+      },400)
     },
     reduceIndex() {
       this.$store.commit(REDUCE_INDEX);
     }
   },
-  computed:{
-    ...mapGetters(['choosedNum'])
+  computed: {
+    ...mapGetters(["choosedNum"])
   }
 };
 </script>
@@ -42,9 +44,8 @@ export default {
 .action {
   display: flex;
   position: absolute;
-  top:1000px;
+  top: 960px;
   left: 50px;
-  
 }
 .back,
 .next {
