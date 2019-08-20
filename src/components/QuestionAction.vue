@@ -23,7 +23,9 @@ export default {
   },
   methods: {
     addIndex(choosedNum) {
+      this.$emit('turnPage')
       this.$store.commit(ADD_INDEX,choosedNum);
+     
       
     },
     reduceIndex() {
@@ -39,9 +41,10 @@ export default {
 <style lang="less" scoped>
 .action {
   display: flex;
-  position: fixed;
-  top: 1090px;
+  position: absolute;
+  top:1000px;
   left: 50px;
+  
 }
 .back,
 .next {

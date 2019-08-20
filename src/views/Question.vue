@@ -1,6 +1,6 @@
 <template>
   <div class="question">
-    <div class="box">
+    <div class="box" ref="box" :class="{animated:isAnimated}">
       <div class="questionIndex">
         <img src="@/assets/images/questionIndex.png" />
         <p class="number">NO.{{questionIndex}}</p>
@@ -9,17 +9,17 @@
       <QuestionBox :index="questionIndex" :content="content" />
       <AnswerBox :answerIndex="questionIndex" :answer="answer" />
       <AnswerDecoration :index="questionIndex" />
-      <QuestionAction :index="questionIndex"/>
+      <QuestionAction :index="questionIndex" @turnPage="turnPage" />
     </div>
   </div>
 </template>
 
 <script>
+import { setTimeout } from 'timers';
 const QuestionBox = () => import("@/components/QuestionBox.vue");
 const AnswerBox = () => import("@/components/AnswerBox.vue");
 const AnswerDecoration = () => import("@/components/AnswerDecoration.vue");
 const QuestionAction = () => import("@/components/QuestionAction.vue");
-
 
 export default {
   components: {
@@ -39,26 +39,46 @@ export default {
       return this.$store.state.question.answer;
     }
   },
-
+  data(){
+    return{
+      isAnimated :false
+    }
+  },
+  methods: {
+    turnPage(data) {
+      this.isAnimated = true
+      setTimeout(
+      () => {
+          this.isAnimated = false
+          console.log(this.isAnimated)
+          console.log(this.$refs)
+          
+        },1000
+      )
+      
+     
+    }
+  }
 };
 </script>
 
 <style lang="less" scoped>
 //动画
+.animated{
+  animation:turnPage 1s infinite;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+
+}
 @keyframes turnPage {
-  0%{
-      transform: rotateY(0deg)
+  0% {
+    transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg);
   }
-  30%{
-      transform: rotateY(30deg)
+  100% {
+    transform: rotateY(-90deg);
+    -webkit-transform: rotateY(-90deg);
   }
-  70%{
-     transform: rotateY(60deg)
-  }
-  100%{
-     transform: rotateY(100deg)
-  }
-  
 }
 
 .question {
@@ -69,12 +89,15 @@ export default {
   height: 100%;
   width: 100%;
   background: #fff4d2;
+  perspective: 3000px;
   .box {
     margin-top: 100px;
     background: url("~@/assets/images/questionBox.png");
     background-size: 100%;
     width: 738px;
     height: 1055px;
+    position: relative;
+    transform-origin:0 10%;
 
     .questionIndex {
       display: flex;
