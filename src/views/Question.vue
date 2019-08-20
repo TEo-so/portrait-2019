@@ -45,13 +45,12 @@ export default {
     }
   },
   methods: {
-    turnPage(data) {
+    turnPage() {
       this.isAnimated = true
       setTimeout(
       () => {
           this.isAnimated = false
-          console.log(this.isAnimated)
-          console.log(this.$refs)
+        
           
         },1000
       )
@@ -91,7 +90,7 @@ export default {
   background: #fff4d2;
   perspective: 3000px;
   .box {
-    margin-top: 100px;
+    margin-top:60px;
     background: url("~@/assets/images/questionBox.png");
     background-size: 100%;
     width: 738px;

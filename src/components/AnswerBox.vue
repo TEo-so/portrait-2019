@@ -71,7 +71,7 @@ export default {
 .type2 {
   display: flex;
   flex-wrap: wrap;
-  margin-left: -30px;
+ 
 
   li {
     display: flex;
@@ -81,8 +81,8 @@ export default {
     align-items: center;
     margin-right: 70px;
     img {
-      width: 100px;
-      height: 90px;
+      width: 120px;
+      height: 120px;
     }
     p {
       white-space: nowrap;
