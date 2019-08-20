@@ -9,7 +9,7 @@
       <QuestionBox :index="questionIndex" :content="content" />
       <AnswerBox :answerIndex="questionIndex" :answer="answer" />
       <AnswerDecoration :index="questionIndex" />
-      <QuestionAction :index="questionIndex" />
+      <QuestionAction :index="questionIndex"/>
     </div>
   </div>
 </template>
@@ -38,11 +38,29 @@ export default {
     answer() {
       return this.$store.state.question.answer;
     }
-  }
+  },
+
 };
 </script>
 
 <style lang="less" scoped>
+//动画
+@keyframes turnPage {
+  0%{
+      transform: rotateY(0deg)
+  }
+  30%{
+      transform: rotateY(30deg)
+  }
+  70%{
+     transform: rotateY(60deg)
+  }
+  100%{
+     transform: rotateY(100deg)
+  }
+  
+}
+
 .question {
   z-index: 1;
   position: absolute;

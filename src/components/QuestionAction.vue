@@ -24,6 +24,7 @@ export default {
   methods: {
     addIndex(choosedNum) {
       this.$store.commit(ADD_INDEX,choosedNum);
+      
     },
     reduceIndex() {
       this.$store.commit(REDUCE_INDEX);

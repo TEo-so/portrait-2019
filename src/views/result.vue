@@ -6,7 +6,13 @@
     </div>
     <div ref="containshot" class="containshot"></div>
     <div ref="screenshot" class="screenshot">
-      <div class="nickname">我的自画像</div>
+      <div class="nickname">
+        <div class="left">
+          <input class="name" v-model="model" />
+          <p class="motify">(点击可修改分享时昵称)</p>
+        </div>
+        <div class="right">的画像</div>
+      </div>
 
       <p class="portrait">
         生活中的你随和安静，在超越自己的另一个赛场上，
@@ -50,8 +56,13 @@
       </div>
 
       <div class="share">
-        <img v-if="isShare" @click="getImage()" src="@/assets/images/share.png" />
-        <img v-else src="@/assets/images/QRcode.png" />
+        <img
+          v-if="isShare"
+          @click="getImage()"
+          src="@/assets/images/share.png"
+          crossorigin="anonymous"
+        />
+        <img v-else src="@/assets/images/QRcode.png" crossorigin="anonymous" />
       </div>
 
       <p class="end">"邮"你,发现更多可能</p>
@@ -62,7 +73,7 @@
 <script>
 import { mapGetters } from "vuex";
 import html2canvas from "html2canvas";
-import { setTimeout } from 'timers';
+import { setTimeout } from "timers";
 
 export default {
   methods: {
@@ -70,7 +81,9 @@ export default {
       this.isShare = false;
       this.$nextTick(function() {
         html2canvas(this.$refs.screenshot, {
-          backgroundColor: "#f7f0de",y:160
+          backgroundColor: "#f7f0de",
+          y: 160,
+          useCORS: true
         }).then(canvas => {
           this.$refs.containshot.append(canvas);
           let link = document.createElement("a");
@@ -82,17 +95,16 @@ export default {
           this.isShare = true;
         });
       });
-      setTimeout(function(){
-          let node = document.getElementsByClassName('containshot')[0];
-          node.removeChild(node.childNodes[0])
-        },3000
-      )
+      setTimeout(function() {
+        let node = document.getElementsByClassName("containshot")[0];
+        node.removeChild(node.childNodes[0]);
+      }, 3000);
     }
   },
   data() {
     return {
       isShare: true,
-      nickname: "红岩网校"
+      model: "红岩网校测试长度超过"
     };
   },
   computed: {
@@ -135,31 +147,46 @@ export default {
 .screenshot {
   width: 700px;
   margin: 0 auto;
-
- 
- 
-
 }
 .containshot {
   width: 700px;
   position: absolute;
   z-index: 99;
   left: 50%;
-  transform: translateX(-50%)
- 
-
- 
+  transform: translateX(-50%);
 }
 
 .nickname {
   margin: 0 auto;
   margin-top: 15px;
   width: 450px;
-  font-family: "themeWord";
-  color: #dcbb94;
-  font-size: 50px;
   letter-spacing: 3px;
-  text-align: center
+  text-align: center;
+  display:flex;
+  .left {
+    width: 310px;
+    .motify{
+      font-size: 25px;
+      white-space: nowrap;
+    }
+    input {
+      background: none;
+      width: 300px;
+      font-family: "themeWord";
+      color: #dcbb94;
+      font-size: 50px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: center;
+    }
+  }
+  .right {
+     font-family: "themeWord";
+      color: #dcbb94;
+      font-size: 50px;
+      color:#6d5c48;
+      white-space: nowrap;
+  }
 }
 
 .portrait {
@@ -196,6 +223,7 @@ export default {
   .option {
     position: absolute;
     background: #f5f1ee;
+    z-index: 2;
   }
   .dots {
     position: relative;
@@ -216,7 +244,7 @@ export default {
   width: 240px;
   margin: 0 auto;
   margin-top: 10px;
-  padding-bottom:60px;
+  padding-bottom: 60px;
   white-space: nowrap;
   color: #565f5e;
 }
