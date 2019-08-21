@@ -6,7 +6,7 @@
       <div class="result">
         <div class="contain">
           <div class="action">
-            <div class="testAgain"></div>
+            <div class="testAgain" @touchstart="testAgain()"></div>
             <div class="refresh"></div>
           </div>
           <div ref="screenshot" class="screenshot">
@@ -62,7 +62,7 @@
             <div class="share">
               <img
                 v-if="isShare"
-                @click="getImage()"
+                @touchstart="getImage()"
                 src="@/assets/images/share.png"
                 crossorigin="anonymous"
               />
@@ -82,6 +82,7 @@
 import { mapGetters } from "vuex";
 import html2canvas from "html2canvas";
 import { setTimeout } from "timers";
+import { SET_TEST_AGAIN } from '../store/type/mutations'
 
 export default {
   methods: {
@@ -101,7 +102,7 @@ export default {
           link.setAttribute("download", "图片canvas.png");
           link.style.display = "none";
           document.body.appendChild(link);
-          link.click();
+          link.touchstart();
           this.isShare = true;
           this.isShow = true;
           this.isMask = false;
@@ -114,6 +115,10 @@ export default {
     },
     focus() {
       this.$refs.input.value = "";
+    },
+    testAgain() {
+      this.$store.commit(SET_TEST_AGAIN)
+      this.$router.push({ name: "question" });
     }
   },
   data() {
@@ -121,20 +126,17 @@ export default {
       isShare: true,
       isShow: true,
       isMask: false,
-      model: "红岩网校测试长度超过"
+      model: this.$store.state.question.user_name
     };
   },
   computed: {
-    ...mapGetters(["answerBack"])
+    ...mapGetters(["answerBack",'choosedNum','choosedList','questionIndex'])
   },
-  watch:{
-    model(){
-       console.log(this.model)
-             
-      
+  watch: {
+    model() {
+      console.log(this.model);
     }
   }
-
 };
 </script>
 

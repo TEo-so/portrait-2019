@@ -6,6 +6,26 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0"user-scalable=0>
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title>portrait-2019</title>
+     <!-- <script>
+       const token = document.location.hash.split('#/?token=')[1]
+    if (!localStorage.getItem('id_token') ) {
+      window.location.href = 'https://wx.idsbllp.cn/MagicLoop/index.php?s=/addon/Api/Api/oauth&redirect='  //后端重定向
+    }
+    if (token && token.length) {
+      document.location.hash = '#/'
+      localStorage.setItem('id_token', token)
+      const { openid, nickname , judgment } = JSON.parse(atob(token.split('.')[1]))
+      localStorage.setItem('user_id', openid)
+      localStorage.setItem('user_name', nickname)
+      localStorage.setItem('exp', exp)
+      localStorage.setItem('judgment', judgment)
+    }
+    const v = Number(localStorage.getItem('version'))
+    if (!localStorage.getItem('version') || v < 2) {
+      window.ProxyStatus.clearCookieAndCache(2);
+    }
+    localStorage.setItem('version', '2')
+     </script> -->
   </head>
   <body>
     <noscript>

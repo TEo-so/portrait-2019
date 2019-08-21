@@ -1,25 +1,23 @@
 <template>
   <div class="question">
-    <div class="box" ref="box" >
-
+    <div class="box" ref="box">
       <div class="page" :class="{animated:isAnimated}">
-      <div class="questionIndex">
-        <img src="@/assets/images/questionIndex.png" />
-        <p class="number">NO.{{questionIndex}}</p>
+        <div class="questionIndex">
+          <img src="@/assets/images/questionIndex.png" />
+          <p class="number">NO.{{questionIndex}}</p>
+        </div>
+
+        <QuestionBox :index="questionIndex" :content="content" />
+        <AnswerBox :answerIndex="questionIndex" :answer="answer" />
+        <AnswerDecoration :index="questionIndex" />
+        <QuestionAction :index="questionIndex" @turnPage="turnPage" />
       </div>
-
-      <QuestionBox :index="questionIndex" :content="content" />
-      <AnswerBox :answerIndex="questionIndex" :answer="answer" />
-      <AnswerDecoration :index="questionIndex" />
-      <QuestionAction :index="questionIndex" @turnPage="turnPage" />
-    </div>
-
     </div>
   </div>
 </template>
 
 <script>
-import { setTimeout } from 'timers';
+import { setTimeout } from "timers";
 const QuestionBox = () => import("@/components/QuestionBox.vue");
 const AnswerBox = () => import("@/components/AnswerBox.vue");
 const AnswerDecoration = () => import("@/components/AnswerDecoration.vue");
@@ -43,23 +41,17 @@ export default {
       return this.$store.state.question.answer;
     }
   },
-  data(){
-    return{
-      isAnimated :false
-    }
+  data() {
+    return {
+      isAnimated: false
+    };
   },
   methods: {
     turnPage() {
-      this.isAnimated = true
-      setTimeout(
-      () => {
-          this.isAnimated = false
-        
-          
-        },1000
-      )
-      
-     
+      this.isAnimated = true;
+      setTimeout(() => {
+        this.isAnimated = false;
+      }, 1000);
     }
   }
 };
@@ -67,17 +59,16 @@ export default {
 
 <style lang="less" scoped>
 //动画
-.animated{
-  animation:turnPage 1s 1;
+.animated {
+  animation: turnPage 1s 1;
   transform-style: preserve-3d;
   backface-visibility: hidden;
-
 }
-.page{
+.page {
   width: 700px;
   height: 980px;
-  transform-origin:0 10%;
-  background:#FFF6E3 ;
+  transform-origin: 0 10%;
+  background: #fff6e3;
   position: relative;
   top: 35px;
   border-top-right-radius: 10px;
@@ -104,7 +95,7 @@ export default {
   background: #fff4d2;
   perspective: 3000px;
   .box {
-    margin-top:60px;
+    margin-top: 60px;
     background: url("~@/assets/images/questionBox.png");
     background-size: 100%;
     width: 738px;

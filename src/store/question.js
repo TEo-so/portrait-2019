@@ -3,12 +3,13 @@ import {
     REDUCE_INDEX,
     CHOOSED_NUMBER,
     SET_FIRST_ANSWER,
-    SET_OLD_ANSWER
+    SET_OLD_ANSWER,
+    SET_TEST_AGAIN
 } from './type/mutations'
 
 import {
-    FETCH_FIRST_ANSWER, FETCH_OLD_AMSWER, 
-}from './type/actions'
+    FETCH_FIRST_ANSWER, FETCH_OLD_AMSWER,
+} from './type/actions'
 
 import {
     ResultService
@@ -33,7 +34,10 @@ const initialState = {
     ],
     choosedNum: null,
     choosedList: [],
-    answerBack:{}
+    answerBack: {},
+    user_name: localStorage.getItem('user_name'),
+    user_id: localStorage.getItem('user_id'),
+    judgment: localStorage.getItem('judgment')
 }
 
 const state = { ...initialState }
@@ -60,24 +64,31 @@ const mutations = {
         let questionIndex = state.questionIndex
         state.choosedList[questionIndex] = data + 1
     },
-    [SET_FIRST_ANSWER](state,data){
+    [SET_FIRST_ANSWER](state, data) {
         state.answerBack = data
     },
-    [SET_OLD_ANSWER](state,data){
+    [SET_OLD_ANSWER](state, data) {
         state.answerBack = data
+    },
+    [SET_TEST_AGAIN](state){
+        state.questionIndex = 1
+        state.choosedList = []
+        state.choosedNum = null
+        state.judgment += 1
     }
-    
+
 }
 
 const actions = {
-    async[FETCH_FIRST_ANSWER]({commit},choosedList){
-        let {data} = await ResultService.getFirstAnswer(choosedList)
-        commit(SET_FIRST_ANSWER,data)
+    async[FETCH_FIRST_ANSWER]({ commit }, params) {
+
+        let { data } = await ResultService.getFirstAnswer(params)
+        commit(SET_FIRST_ANSWER, data)
 
     },
-    async[FETCH_OLD_AMSWER]({commit}){
-        let {data} = await ResultService.getOldAnswer()
-        commit(SET_OLD_ANSWER,data)
+    async[FETCH_OLD_AMSWER]({ commit }) {
+        let { data } = await ResultService.getOldAnswer()
+        commit(SET_OLD_ANSWER, data)
     }
 
 }
@@ -89,9 +100,37 @@ const getters = {
     choosedList() {
         return state.choosedList
     },
-    answerBack(){
+    answerBack() {
         return state.answerBack
-    }
+    },
+    questionIndex(){
+        return state.questionIndex
+    },
+    // resultToBack() {
+    //     console.log(state.choosedList)
+    //     let eat = state.choosedList[1]
+    //     let exercise = state.choosedList[2]
+    //     let sleep = state.choosedList[3]
+    //     let peopel_set = state.choosedList[4]
+    //     let movie = state.choosedList[5]
+    //     let user_id = state.user_id
+    //     let user_name = state.user_name
+    //     let judgment = state.judgment
+    //     let resultToBack = {
+    //         "user_id": user_id,
+    //         "user_name": user_name,
+    //         "judgment": judgment,
+    //         "eat": eat,
+    //         "exercise": exercise,
+    //         "sleep": sleep,
+    //         "peopel_set": peopel_set,
+    //         "movie": movie
+    //     }
+    //     debugger
+    //     console.log(resultToBack)
+    //     return resultToBack
+    // }
+
 }
 
 

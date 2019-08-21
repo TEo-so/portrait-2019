@@ -1,13 +1,13 @@
 <template>
   <div class="answer">
     <ul class="type1" v-if="isType1">
-      <li v-for="(item,index) in answer[answerIndex-1]" :key="index" @click="choose(index)">
+      <li v-for="(item,index) in answer[answerIndex-1]" :key="index" @touchstart="choose(index)">
         <p :class="{'choosed':choosedNum == index }">{{item}}</p>
       </li>
     </ul>
 
     <ul class="type2" v-else>
-      <li v-for="(item,index) in answer[answerIndex-1]" :key="index" @click="choose(index)">
+      <li v-for="(item,index) in answer[answerIndex-1]" :key="index" @touchstart="choose(index)">
         <div>
           <img :src="item[1]" />
         </div>
@@ -71,6 +71,7 @@ export default {
 .type2 {
   display: flex;
   flex-wrap: wrap;
+  margin-top: -40px;
  
 
   li {

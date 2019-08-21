@@ -4,7 +4,7 @@
     
         <img class="enter" 
         src="@/assets/images/enter.png"
-        @click = "getEntrance()" />
+        @touchstart = "getEntrance()" />
     
     </div>
   </div>

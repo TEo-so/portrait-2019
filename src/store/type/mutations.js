@@ -4,4 +4,4 @@ export const CHOOSED_NUMBER = 'choosedNumber'
 export const SET_JUDGEMENT = 'setJudgement'
 export const SET_FIRST_ANSWER = 'setFirstAnswer'
 export const SET_OLD_ANSWER = 'setOldAnswer'
-
+export const SET_TEST_AGAIN = 'setTestAgain'

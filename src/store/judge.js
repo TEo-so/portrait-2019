@@ -11,6 +11,7 @@ import {
 }from '../common/service/api'
 
 const initialState = {
+     
      judgeInformation:{}
 }
 

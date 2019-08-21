@@ -58,7 +58,7 @@
       <div class="share">
         <img
           v-if="isShare"
-          @click="getImage()"
+          @touchstart="getImage()"
           src="@/assets/images/share.png"
           crossorigin="anonymous"
         />
@@ -91,7 +91,7 @@ export default {
           link.setAttribute("download", "图片canvas.png");
           link.style.display = "none";
           document.body.appendChild(link);
-          link.click();
+          link.touchstart();
           this.isShare = true;
         });
       });
