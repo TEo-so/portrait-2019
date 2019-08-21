@@ -1,78 +1,80 @@
 <template>
-  <div class="loading">
-    <img class="camera" src="@/assets/images/camera.png" />
-    <p class="loadWords">画像绘制中 ...</p>
-    <div class="result">
-      <div class="contain">
-        <div class="action">
-          <div class="testAgain"></div>
-          <div class="refresh"></div>
-        </div>
-        <div ref="containshot" class="containshot"></div>
-        <div ref="screenshot" class="screenshot">
-          <div class="nickname">
-            <div class="left">
-              <input class="name" v-model="model" />
-              <p class="motify">(点击可修改分享时昵称)</p>
+  <div>
+    <div class="loading" :class="{mask:isMask}">
+      <img class="camera" src="@/assets/images/camera.png" />
+      <p class="loadWords">画像绘制中 ...</p>
+      <div class="result">
+        <div class="contain">
+          <div class="action">
+            <div class="testAgain"></div>
+            <div class="refresh"></div>
+          </div>
+          <div ref="screenshot" class="screenshot">
+            <div class="nickname">
+              <div class="left">
+                <input class="name" ref="input" @focus="focus" v-model="model" />
+                <p class="motify" v-if="isShow">(点击可修改分享时昵称)</p>
+              </div>
+              <div class="right">的画像</div>
             </div>
-            <div class="right">的画像</div>
+
+            <p class="portrait">
+              生活中的你随和安静，在超越自己的另一个赛场上，
+              延续了你对生活充满阳光，积极向上的心态。
+              你所走过人生的一帧一帧都被镌刻在生命里，追求卓越是生活给你的馈赠。
+              阶段的转变，学会合理利用时间，规律的作息就显得非常重要，
+              你可以在时间规划内高效完成任务。
+              “我命由我不由天”，再起航，你的未来邮你定。
+            </p>
+
+            <p class="subtitle">与你相同的邮子</p>
+
+            <div class="analyze">
+              <ul>
+                <li>
+                  <span class="option">莲蓉蛋黄</span>
+                  <div class="dots">...............</div>
+                  <span class="rate">50%</span>
+                </li>
+                <li>
+                  <span class="option">球类</span>
+                  <span class="dots">...............</span>
+                  <span class="rate">50%</span>
+                </li>
+                <li>
+                  <span class="option">10：00-12：00</span>
+                  <span class="dots">...............</span>
+                  <span class="rate">50%</span>
+                </li>
+                <li>
+                  <span class="option">佛系代表</span>
+                  <span class="dots">...............</span>
+                  <span class="rate">50%</span>
+                </li>
+                <li>
+                  <span class="option">哪吒大闹东宫</span>
+                  <span class="dots">...............</span>
+                  <span class="rate">50%</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="share">
+              <img
+                v-if="isShare"
+                @click="getImage()"
+                src="@/assets/images/share.png"
+                crossorigin="anonymous"
+              />
+              <img v-else src="@/assets/images/QRcode.png" crossorigin="anonymous" />
+            </div>
+
+            <p class="end">"邮"你,发现更多可能</p>
           </div>
-
-          <p class="portrait">
-            生活中的你随和安静，在超越自己的另一个赛场上，
-            延续了你对生活充满阳光，积极向上的心态。
-            你所走过人生的一帧一帧都被镌刻在生命里，追求卓越是生活给你的馈赠。
-            阶段的转变，学会合理利用时间，规律的作息就显得非常重要，
-            你可以在时间规划内高效完成任务。
-            “我命由我不由天”，再起航，你的未来邮你定。
-          </p>
-
-          <p class="subtitle">与你相同的邮子</p>
-
-          <div class="analyze">
-            <ul>
-              <li>
-                <span class="option">莲蓉蛋黄</span>
-                <div class="dots">...............</div>
-                <span class="rate">50%</span>
-              </li>
-              <li>
-                <span class="option">球类</span>
-                <span class="dots">...............</span>
-                <span class="rate">50%</span>
-              </li>
-              <li>
-                <span class="option">10：00-12：00</span>
-                <span class="dots">...............</span>
-                <span class="rate">50%</span>
-              </li>
-              <li>
-                <span class="option">佛系代表</span>
-                <span class="dots">...............</span>
-                <span class="rate">50%</span>
-              </li>
-              <li>
-                <span class="option">哪吒大闹东宫</span>
-                <span class="dots">...............</span>
-                <span class="rate">50%</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="share">
-            <img
-              v-if="isShare"
-              @click="getImage()"
-              src="@/assets/images/share.png"
-              crossorigin="anonymous"
-            />
-            <img v-else src="@/assets/images/QRcode.png" crossorigin="anonymous" />
-          </div>
-
-          <p class="end">"邮"你,发现更多可能</p>
         </div>
       </div>
     </div>
+    <div ref="containshot" class="containshot"></div>
   </div>
 </template>
 
@@ -85,10 +87,12 @@ export default {
   methods: {
     getImage() {
       this.isShare = false;
+      this.isShow = false;
+      this.isMask = true;
       this.$nextTick(function() {
         html2canvas(this.$refs.screenshot, {
           backgroundColor: "#f7f0de",
-          y:160,
+          y: 130,
           useCORS: true
         }).then(canvas => {
           this.$refs.containshot.append(canvas);
@@ -99,23 +103,38 @@ export default {
           document.body.appendChild(link);
           link.click();
           this.isShare = true;
+          this.isShow = true;
+          this.isMask = false;
         });
       });
       setTimeout(function() {
         let node = document.getElementsByClassName("containshot")[0];
         node.removeChild(node.childNodes[0]);
-      }, 3000);
+      }, 8000);
+    },
+    focus() {
+      this.$refs.input.value = "";
     }
   },
   data() {
     return {
       isShare: true,
+      isShow: true,
+      isMask: false,
       model: "红岩网校测试长度超过"
     };
   },
   computed: {
     ...mapGetters(["answerBack"])
+  },
+  watch:{
+    model(){
+       console.log(this.model)
+             
+      
+    }
   }
+
 };
 </script>
 
@@ -137,12 +156,22 @@ export default {
     height: 800px;
   }
 }
+.containshot {
+  width: 605px;
+  position: fixed;
+  bottom: 40px;
+  z-index: 199;
+  padding-left: 70px;
+}
+.mask {
+  filter: grayscale(70%);
+}
 .result {
   position: absolute;
   width: 750px;
   top: 11%;
   overflow: hidden;
-  animation: print 3s 1 1s;
+  animation: print 3s 1 1.5s;
   animation-fill-mode: forwards;
   .contain {
     position: absolute;
@@ -173,16 +202,9 @@ export default {
       background-size: 100%;
     }
     .screenshot {
-      width: 700px;
+      width: 600px;
       position: relative;
-      right: 5%;
-    }
-    .containshot {
-      width: 700px;
-      position: absolute;
-      z-index: 99;
-      left: 50%;
-      transform: translateX(-50%);
+      margin-left: 15px;
     }
 
     .nickname {
@@ -299,20 +321,20 @@ export default {
     height: 786px;
     position: absolute;
     z-index: 99;
-    top:10%;
-    animation: moveUp 3s 1 1s;
+    top: 10%;
+    animation: moveUp 3s 1 1.5s;
     animation-fill-mode: forwards;
   }
   .loadWords {
     font-family: "themeWord";
     color: #933c16;
     position: absolute;
-    top: 60%;
+    top: 400%;
     font-weight: 700;
     font-size: 50px;
     white-space: nowrap;
     letter-spacing: 10px;
-    bottom: 20%;
+    top: 55%;
     left: 50%;
     transform: translateX(-50%);
   }
