@@ -4,7 +4,8 @@ import {
     CHOOSED_NUMBER,
     SET_FIRST_ANSWER,
     SET_OLD_ANSWER,
-    SET_TEST_AGAIN
+    SET_TEST_AGAIN,
+    CHANGE_USER_NAME
 } from './type/mutations'
 
 import {
@@ -35,9 +36,8 @@ const initialState = {
     choosedNum: null,
     choosedList: [],
     answerBack: {},
-    user_name: localStorage.getItem('user_name'),
-    user_id: localStorage.getItem('user_id'),
-    judgment: localStorage.getItem('judgment')
+    user_name: this.$store.state.judge.user_name,
+  
 }
 
 const state = { ...initialState }
@@ -74,7 +74,11 @@ const mutations = {
         state.questionIndex = 1
         state.choosedList = []
         state.choosedNum = null
-        state.judgment += 1
+        this.$store.state.judge.judgment +=1
+       
+    },
+    [CHANGE_USER_NAME](state,data){
+        state.user_name =data
     }
 
 }
@@ -106,6 +110,9 @@ const getters = {
     questionIndex(){
         return state.questionIndex
     },
+    user_name(){
+        return state.user_name
+    }
     // resultToBack() {
     //     console.log(state.choosedList)
     //     let eat = state.choosedList[1]

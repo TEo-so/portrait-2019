@@ -19,12 +19,13 @@
             </div>
 
             <p class="portrait">
-              生活中的你随和安静，在超越自己的另一个赛场上，
+              <!-- 生活中的你随和安静，在超越自己的另一个赛场上，
               延续了你对生活充满阳光，积极向上的心态。
               你所走过人生的一帧一帧都被镌刻在生命里，追求卓越是生活给你的馈赠。
               阶段的转变，学会合理利用时间，规律的作息就显得非常重要，
               你可以在时间规划内高效完成任务。
-              “我命由我不由天”，再起航，你的未来邮你定。
+              “我命由我不由天”，再起航，你的未来邮你定。 -->
+              {{answerback.description}}
             </p>
 
             <p class="subtitle">与你相同的邮子</p>
@@ -34,27 +35,27 @@
                 <li>
                   <span class="option">莲蓉蛋黄</span>
                   <div class="dots">...............</div>
-                  <span class="rate">50%</span>
+                  <span class="rate">{{answerBack.EatRatio}}</span>
                 </li>
                 <li>
                   <span class="option">球类</span>
                   <span class="dots">...............</span>
-                  <span class="rate">50%</span>
+                  <span class="rate">{{answerback.ExerciseRatio}}</span>
                 </li>
                 <li>
                   <span class="option">10：00-12：00</span>
                   <span class="dots">...............</span>
-                  <span class="rate">50%</span>
+                  <span class="rate">{{answerback.SleepRatio}}</span>
                 </li>
                 <li>
                   <span class="option">佛系代表</span>
                   <span class="dots">...............</span>
-                  <span class="rate">50%</span>
+                  <span class="rate">{{answerback.PSRatio}}</span>
                 </li>
                 <li>
                   <span class="option">哪吒大闹东宫</span>
                   <span class="dots">...............</span>
-                  <span class="rate">50%</span>
+                  <span class="rate">{{answerback.MovieRatio}}</span>
                 </li>
               </ul>
             </div>
@@ -82,7 +83,7 @@
 import { mapGetters } from "vuex";
 import html2canvas from "html2canvas";
 import { setTimeout } from "timers";
-import { SET_TEST_AGAIN } from '../store/type/mutations'
+import { SET_TEST_AGAIN ,CHANGE_USER_NAME} from '../store/type/mutations'
 
 export default {
   methods: {
@@ -126,15 +127,15 @@ export default {
       isShare: true,
       isShow: true,
       isMask: false,
-      model: this.$store.state.question.user_name
+      model:this.$store.state.judge.user_name
     };
   },
   computed: {
     ...mapGetters(["answerBack",'choosedNum','choosedList','questionIndex'])
   },
   watch: {
-    model() {
-      console.log(this.model);
+    model(newValue,oldValue) {
+      this.$store.commit(CHANGE_USER_NAME,newValue)
     }
   }
 };

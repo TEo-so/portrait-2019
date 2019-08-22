@@ -15,13 +15,13 @@ import { mapGetters } from 'vuex'
 import {FETCH_JUDGEMENT, FETCH_OLD_AMSWER} from '../store/type/actions'
 export default {
   computed:{
-    ...mapGetters(['judgeInformation'])
+    ...mapGetters(['judgment'])
   },
   methods:{
     getEntrance(){
       this.$store.dispatch(FETCH_JUDGEMENT)
-      let judgement = this.judgeInformation.judgement
-      if(judgement == 0 ){
+      let judgment = this.judgment
+      if(judgment == 0 ){
         this.$router.push({name:'question'})
       }else{
         this.$router.push({name:'result'})

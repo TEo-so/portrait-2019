@@ -7,18 +7,18 @@
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title>portrait-2019</title>
      <!-- <script>
-       const token = document.location.hash.split('#/?token=')[1]
-    if (!localStorage.getItem('id_token') ) {
-      window.location.href = 'https://wx.idsbllp.cn/MagicLoop/index.php?s=/addon/Api/Api/oauth&redirect='  //后端重定向
+      const token = document.location.hash.split('#/?token=')[1]
+    if ((!localStorage.getItem('id_token') || parseInt(localStorage.getItem('exp')) < Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 2) && !token) {
+      window.location.href = 'https://wx.idsbllp.cn/MagicLoop/index.php?s=/addon/Api/Api/oauth&redirect='
     }
     if (token && token.length) {
       document.location.hash = '#/'
       localStorage.setItem('id_token', token)
-      const { openid, nickname , judgment } = JSON.parse(atob(token.split('.')[1]))
-      localStorage.setItem('user_id', openid)
-      localStorage.setItem('user_name', nickname)
+      const { user_id, user_name, exp } = JSON.parse(atob(token.split('.')[1]))
       localStorage.setItem('exp', exp)
-      localStorage.setItem('judgment', judgment)
+      let user_name = decodeURI(user_name)
+      localStorage.setItem('user_name', user_name)
+      localStorage.setItem('user_id', user_id)
     }
     const v = Number(localStorage.getItem('version'))
     if (!localStorage.getItem('version') || v < 2) {

@@ -11,8 +11,9 @@ import {
 }from '../common/service/api'
 
 const initialState = {
-     
-     judgeInformation:{}
+    user_name: localStorage.getItem('user_name'),
+    judgment:null,
+
 }
 
 const state = {...initialState}
@@ -27,15 +28,16 @@ const actions ={
 
 const mutations ={
      [SET_JUDGEMENT](state,data){
-         state.judgeInformation = data
+         state.judgment = data
         
      }
 }
 
 const getters = {
-    judgeInformation(){
-        return state.judgeInformation
-    }
+    judgment(){
+        return state.judgment
+    },
+   
 }
 
 export default {

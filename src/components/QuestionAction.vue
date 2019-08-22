@@ -38,14 +38,13 @@ export default {
     //   this.$router.push({name:'loading'})
     // }
     submit() {
-      let eat = this.choosedList[1];
-      let exercise = this.choosedList[2];
-      let sleep = this.choosedList[3];
-      let peopel_set = this.choosedList[4];
-      let movie = this.choosedList[5];
-      let user_name = localStorage.getItem("user_name");
-      let user_id = localStorage.getItem("user_id");
-      let judgment = localStorage.getItem("judgment");
+      let eat = this.choosedList[1].toString();
+      let exercise = this.choosedList[2].toString();
+      let sleep = this.choosedList[3].toString();
+      let peopel_set = this.choosedList[4].toString();
+      let movie = this.choosedList[5].toString();
+      let user_name =this.user_name
+      let judgment = this.$store.state.judge.judgment
       let resultToBack = {
         eat,
         exercise,
@@ -53,7 +52,6 @@ export default {
         peopel_set,
         movie,
         user_name,
-        user_id,
         judgment
       };
       console.log(resultToBack);
@@ -61,7 +59,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["choosedNum", "choosedList"])
+    ...mapGetters(["choosedNum", "choosedList",'user_name'])
   }
 };
 </script>
