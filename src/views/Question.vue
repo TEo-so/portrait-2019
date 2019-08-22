@@ -101,7 +101,7 @@ export default {
     width: 738px;
     height: 1055px;
     position: relative;
-    perspective: 3000px;
+    transform: perspective(3000px);
 
     .questionIndex {
       display: flex;

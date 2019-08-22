@@ -6,7 +6,7 @@
     </div>
     <div class="next">
       <p v-if="index == 5 " @touchstart="submit()">提交</p>
-      <p v-else @touchstart="addIndex(choosedNum)">下一题</p>
+      <p v-else @click="addIndex(choosedNum)">下一题</p>
     </div>
   </div>
 </template>

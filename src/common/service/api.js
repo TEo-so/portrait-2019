@@ -8,12 +8,19 @@ const ApiService = {
   init () {
     Vue.use(VueAxios, axios)
     Vue.axios.defaults.baseURL = API_URL
+    this.setHeader()
+    this.setFormat()
   },
 
   setHeader () {
     Vue.axios.defaults.headers.common[
       "Authorization"
     ] = `Token ${JwtService.getToken()}`;
+  },
+  setFormat(){
+    Vue.axios.defaults.headers.post[
+      'Content-Type'
+    ] = 'application/x-www-form-urlencoded'
   },
 
   get (resource) {
