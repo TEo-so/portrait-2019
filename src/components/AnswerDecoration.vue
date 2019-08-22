@@ -22,7 +22,7 @@ export default {
 <style lang="less" scoped>
 .decoration {
   position: absolute;
-  top:800px;
+  top:750px;
   left: 400px;
   
   .mooncake {

@@ -39,7 +39,7 @@ export default {
       width: 730px;
       height: 370px;
       position: relative;
-      bottom: 50px;
+      bottom: 80px;
       z-index: 3;
     }
 

@@ -106,7 +106,8 @@ export default {
     .questionIndex {
       display: flex;
       align-items: center;
-
+      position: relative;
+      top:-40px;
       background-size: 100%;
 
       img {
@@ -120,7 +121,8 @@ export default {
         font-size: 60px;
         font-weight: 500;
         position: relative;
-        right: 160px;
+        top:5px;
+        right: 170px;
         z-index: 5;
       }
     }

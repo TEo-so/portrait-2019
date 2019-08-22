@@ -57,7 +57,7 @@ export default {
     
 <style lang="less" scoped>
 .answer {
-  margin-top: -10px;
+  margin-top: -25px;
   margin-left: 70px;
   font-family: "themeWord";
   font-size: 50px;
