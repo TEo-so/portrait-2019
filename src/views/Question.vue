@@ -95,12 +95,12 @@ export default {
   background: #fff4d2;
   perspective: 3000px;
   .box {
-    margin-top: 60px;
+    bottom: 12%;
     background: url("~@/assets/images/questionBox.png");
     background-size: 100%;
     width: 738px;
     height: 1055px;
-    position: relative;
+    position: fixed;
     transform: perspective(3000px);
 
     .questionIndex {
