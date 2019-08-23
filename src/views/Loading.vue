@@ -5,6 +5,7 @@
       <p class="loadWords">画像绘制中 ...</p>
       <div class="result">
         <div class="contain">
+          <div class="empty"></div>
           <div class="action">
             <div class="testAgain" @touchstart="testAgain()"></div>
             <div class="refresh"></div>
@@ -19,13 +20,7 @@
             </div>
 
             <p class="portrait">
-              <!-- 生活中的你随和安静，在超越自己的另一个赛场上，
-              延续了你对生活充满阳光，积极向上的心态。
-              你所走过人生的一帧一帧都被镌刻在生命里，追求卓越是生活给你的馈赠。
-              阶段的转变，学会合理利用时间，规律的作息就显得非常重要，
-              你可以在时间规划内高效完成任务。
-              “我命由我不由天”，再起航，你的未来邮你定。 -->
-              {{answerback.description}}
+              {{answerBack.description}}
             </p>
 
             <p class="subtitle">与你相同的邮子</p>
@@ -35,27 +30,27 @@
                 <li>
                   <span class="option">莲蓉蛋黄</span>
                   <div class="dots">...............</div>
-                  <span class="rate">{{answerBack.EatRatio}}</span>
+                  <span class="rate">{{new Number(answerBack.EatRatio).toFixed(1)}}%</span>
                 </li>
                 <li>
                   <span class="option">球类</span>
                   <span class="dots">...............</span>
-                  <span class="rate">{{answerback.ExerciseRatio}}</span>
+                  <span class="rate">{{new Number(answerBack.ExerciseRatio).toFixed(1)}}%</span>
                 </li>
                 <li>
                   <span class="option">10：00-12：00</span>
                   <span class="dots">...............</span>
-                  <span class="rate">{{answerback.SleepRatio}}</span>
+                  <span class="rate">{{new Number(answerBack.SleepRatio).toFixed(1)}}%</span>
                 </li>
                 <li>
                   <span class="option">佛系代表</span>
                   <span class="dots">...............</span>
-                  <span class="rate">{{answerback.PSRatio}}</span>
+                  <span class="rate">{{new Number(answerBack.PSRatio).toFixed(1)}}%</span>
                 </li>
                 <li>
                   <span class="option">哪吒大闹东宫</span>
                   <span class="dots">...............</span>
-                  <span class="rate">{{answerback.MovieRatio}}</span>
+                  <span class="rate">{{new Number(answerBack.MovieRatio).toFixed(1)}}%</span>
                 </li>
               </ul>
             </div>
@@ -104,15 +99,16 @@ export default {
           link.style.display = "none";
           document.body.appendChild(link);
           link.touchstart();
-          this.isShare = true;
-          this.isShow = true;
-          this.isMask = false;
+         
         });
       });
       setTimeout(function() {
+          this.isShare = true;
+          this.isShow = true;
+          this.isMask = false;
         let node = document.getElementsByClassName("containshot")[0];
         node.removeChild(node.childNodes[0]);
-      }, 8000);
+      }, 2000);
     },
     focus() {
       this.$refs.input.value = "";
@@ -132,6 +128,7 @@ export default {
   },
   computed: {
     ...mapGetters(["answerBack",'choosedNum','choosedList','questionIndex'])
+    
   },
   watch: {
     model(newValue,oldValue) {
@@ -147,7 +144,7 @@ export default {
     transform: translateY(0);
   }
   100% {
-    transform: translateY(-355px);
+    transform: translateY(-320px);
   }
 }
 @keyframes print {
@@ -183,11 +180,14 @@ export default {
     transform: translateX(-50%);
     height: 1500px;
     width: 635px;
-
+    .empty{
+      height: 30px;
+    }
     .action {
       display: flex;
-      margin-top: 10px;
+      margin-top: 30px;
       margin-left: 60px;
+      padding-top: 20px;
     }
 
     .testAgain,
@@ -324,7 +324,7 @@ export default {
     height: 786px;
     position: absolute;
     z-index: 99;
-    top: 10%;
+    top:8%;
     animation: moveUp 3s 1 1.5s;
     animation-fill-mode: forwards;
   }

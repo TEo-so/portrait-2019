@@ -9,22 +9,18 @@
      <script>
       const token = document.location.hash.split('#/?token=')[1]
     if ((!localStorage.getItem('id_token') || parseInt(localStorage.getItem('exp')) < Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 2) && !token) {
-      window.location.href = 'https://wx.idsbllp.cn/MagicLoop/index.php?s=/addon/Api/Api/oauth&redirect=http://hongyan.cqupt.edu.cn/234/cq_impress/jwt'
+      window.location.href = 'https://wx.idsbllp.cn/MagicLoop/index.php?s=/addon/Api/Api/oauth&redirect=https://wx.idsbllp.cn/cq_impress/jwt'
     }
     if (token && token.length) {
       document.location.hash = '#/'
       localStorage.setItem('id_token', token)
-      const { user_id, user_name, exp } = JSON.parse(atob(token.split('.')[1]))
+      let { user_id, user_name, exp } = JSON.parse(atob(token.split('.')[1]))
       localStorage.setItem('exp', exp)
-      let user_name = decodeURI(user_name)
+      user_name = decodeURI(user_name)
       localStorage.setItem('user_name', user_name)
       localStorage.setItem('user_id', user_id)
     }
-    const v = Number(localStorage.getItem('version'))
-    if (!localStorage.getItem('version') || v < 2) {
-      window.ProxyStatus.clearCookieAndCache(2);
-    }
-    localStorage.setItem('version', '2')
+   
      </script>
   </head>
   <body>

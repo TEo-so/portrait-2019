@@ -19,15 +19,18 @@ export default {
   },
   methods:{
     getEntrance(){
-      this.$store.dispatch(FETCH_JUDGEMENT)
       let judgment = this.judgment
-      if(judgment == 0 ){
+      console.log(judgment)
+      if(judgment == "0" ){
         this.$router.push({name:'question'})
       }else{
-        this.$router.push({name:'result'})
+        this.$router.push({name:'loading'})
         this.$store.dispatch(FETCH_OLD_AMSWER)
       }
     }
+  },
+  created(){
+    this.$store.dispatch(FETCH_JUDGEMENT)
   }
 };
 </script>

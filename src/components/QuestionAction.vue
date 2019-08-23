@@ -28,7 +28,7 @@ export default {
       this.$emit("turnPage");
       setTimeout(() => {
         this.$store.commit(ADD_INDEX, choosedNum);
-      }, 400);
+      }, 600);
     },
     reduceIndex() {
       this.$store.commit(REDUCE_INDEX);
@@ -44,7 +44,9 @@ export default {
       let peopel_set = this.choosedList[4].toString();
       let movie = this.choosedList[5].toString();
       let user_name =this.user_name
-      let judgment = this.$store.state.judge.judgment
+      let judgment = this.$store.state.judge.judgment.judgment
+      console.log(judgment)
+      console.log(this.$store.state)
       let resultToBack = {
         eat,
         exercise,
@@ -56,6 +58,7 @@ export default {
       };
       console.log(resultToBack);
       this.$router.push({ name: "loading" });
+      this.$store.dispatch( FETCH_FIRST_ANSWER, resultToBack)
     }
   },
   computed: {

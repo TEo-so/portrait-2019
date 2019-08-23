@@ -21,7 +21,8 @@ const state = {...initialState}
 
 const actions ={
     async[FETCH_JUDGEMENT]({commit}){
-        let{data} = await JudgeService.getJudge()
+        let {data} = await JudgeService.getJudge()
+        console.log(data)
         commit (SET_JUDGEMENT,data)
     },
     
@@ -39,7 +40,7 @@ const mutations ={
 
 const getters = {
     judgment(){
-        return state.judgment
+        return state.judgment.judgment
     },
     user_name(){
         return state.user_name

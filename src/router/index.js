@@ -5,7 +5,7 @@ import Router from 'vue-router'
 import Home from '@/views/Home.vue'
 const Question = () => import('@/views/Question.vue')
 const Loading = () => import('@/views/Loading.vue')
-const Result = () => import('@/views/result.vue')
+
 
 
 Vue.use(Router)
@@ -27,11 +27,7 @@ export default new Router({
             name: 'loading',
             component: Loading
         },
-        {
-            path: '/result',
-            name: 'resulr',
-            component: Result
-        },
+       
 
 
     ]

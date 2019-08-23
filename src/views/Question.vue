@@ -66,11 +66,11 @@ export default {
 }
 .page {
   width: 700px;
-  height: 980px;
+  height: 970px;
   transform-origin: 0 10%;
   background: #fff6e3;
   position: relative;
-  top: 35px;
+  top: 55px;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
 }
@@ -95,11 +95,11 @@ export default {
   background: #fff4d2;
   perspective: 3000px;
   .box {
-    bottom: 12%;
+    bottom:8%;
     background: url("~@/assets/images/questionBox.png");
     background-size: 100%;
     width: 738px;
-    height: 1055px;
+    height: 1040px;
     position: fixed;
     transform: perspective(3000px);
 

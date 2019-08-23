@@ -63,8 +63,8 @@ export const ResultService = {
 //openid 放在头部 得到是否为初次测试的结果 
 //返回参数为 judgement ==0 初次答题 ==1 不是第一次答题
 export const JudgeService = {
-    getJudge(params){
-      return ApiService.post(`main`,params)
+    getJudge(){
+      return ApiService.post(`main`)
     }
 }
 
