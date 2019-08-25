@@ -1,17 +1,17 @@
 <template>
   <div class="answer">
     <ul class="type1" v-if="isType1">
-      <li v-for="(item,index) in answer[answerIndex-1]" :key="index" @touchstart="choose(index)">
-        <p :class="{'choosed':choosedNum == index }">{{item}}</p>
+      <li v-for="(item,index) in answer[answerIndex-1]" :key="index-1" @touchstart="choose(index-1)">
+        <p :class="{'choosed':choosedNum == index-1 }">{{item}}</p>
       </li>
     </ul>
 
     <ul class="type2" v-else>
-      <li v-for="(item,index) in answer[answerIndex-1]" :key="index" @touchstart="choose(index)">
+      <li v-for="(item,index) in answer[answerIndex-1]" :key="index-1" @touchstart="choose(index-1)">
         <div>
           <img :src="item[1]" />
         </div>
-        <p :class="{'choosed':choosedNum == index }">{{item[0]}}</p>
+        <p :class="{'choosed':choosedNum == index-1 }">{{item[0]}}</p>
       </li>
     </ul>
   </div>

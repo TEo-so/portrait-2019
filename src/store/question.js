@@ -9,7 +9,7 @@ import {
 } from './type/mutations'
 
 import {
-    FETCH_FIRST_ANSWER, FETCH_OLD_AMSWER,
+    FETCH_FIRST_ANSWER, FETCH_OLD_ANSWER,
 } from './type/actions'
 
 import {
@@ -91,7 +91,7 @@ const actions = {
         commit(SET_FIRST_ANSWER, data)
 
     },
-    async[FETCH_OLD_AMSWER]({ commit }) {
+    async[FETCH_OLD_ANSWER]({ commit }) {
         let { data } = await ResultService.getOldAnswer()
         console.log(data)
         commit(SET_OLD_ANSWER, data)
@@ -112,6 +112,9 @@ const getters = {
     questionIndex(){
         return state.questionIndex
     },
+    answer(){
+        return state.answer
+    }
   
     // resultToBack() {
     //     console.log(state.choosedList)

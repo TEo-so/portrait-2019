@@ -1,6 +1,6 @@
 <template>
-  <div class="home">
-    <div class="book">
+  <div class="home" v-on:touchmove.self.prevent>
+    <div class="book" v-on:touchmove.self.prevent>
     
         <img class="enter" 
         src="@/assets/images/enter.png"
@@ -12,7 +12,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import {FETCH_JUDGEMENT, FETCH_OLD_AMSWER} from '../store/type/actions'
+import {FETCH_JUDGEMENT, FETCH_OLD_ANSWER} from '../store/type/actions'
 export default {
   computed:{
     ...mapGetters(['judgment'])
@@ -21,11 +21,20 @@ export default {
     getEntrance(){
       let judgment = this.judgment
       console.log(judgment)
-      if(judgment == "0" ){
+      console.log(judgment.judgment)
+     if(judgment){
+      if(judgment.judgment == "0" ){
         this.$router.push({name:'question'})
-      }else{
+      }else if(judgment.judgment == "1") {
         this.$router.push({name:'loading'})
-        this.$store.dispatch(FETCH_OLD_AMSWER)
+        this.$store.dispatch(FETCH_OLD_ANSWER)
+      }else{
+        alert("未获取到用户信息")
+        return
+      }
+    } else{
+        alert("您的网络有问题哦")
+        return
       }
     }
   },

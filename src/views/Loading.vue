@@ -7,50 +7,48 @@
         <div class="contain">
           <div class="empty"></div>
           <div class="action">
-            <div class="testAgain" @touchstart="testAgain()"></div>
-            <div class="refresh"></div>
+            <div class="testAgain" @click="testAgain"></div>
+            <div class="refresh" @click="refresh"></div>
           </div>
           <div ref="screenshot" class="screenshot">
             <div class="nickname">
               <div class="left">
-                <input class="name" ref="input" @focus="focus" v-model="model" />
+                <input class="name" ref="input" @focus="focus" :placeholder = model />
                 <p class="motify" v-if="isShow">(点击可修改分享时昵称)</p>
               </div>
               <div class="right">的画像</div>
             </div>
 
-            <p class="portrait">
-              {{answerBack.description}}
-            </p>
+            <p class="portrait">{{answerBack.ratio.description}}</p>
 
             <p class="subtitle">与你相同的邮子</p>
 
             <div class="analyze">
               <ul>
                 <li>
-                  <span class="option">莲蓉蛋黄</span>
+                  <span class="option">{{this.answer[0][answerBack.answer.eat].split('.')[1]}}</span>
                   <div class="dots">...............</div>
-                  <span class="rate">{{new Number(answerBack.EatRatio).toFixed(1)}}%</span>
+                  <span class="rate">{{new Number(answerBack.ratio.EatRatio).toFixed(1)}}%</span>
                 </li>
                 <li>
-                  <span class="option">球类</span>
+                  <span class="option">{{this.answer[1][answerBack.answer.exercise][0].split('.')[1]}}</span>
                   <span class="dots">...............</span>
-                  <span class="rate">{{new Number(answerBack.ExerciseRatio).toFixed(1)}}%</span>
+                  <span class="rate">{{new Number(answerBack.ratio.ExerciseRatio).toFixed(1)}}%</span>
                 </li>
                 <li>
-                  <span class="option">10：00-12：00</span>
+                  <span class="option">{{this.answer[2][answerBack.answer.sleep].split('.')[1]}}</span>
                   <span class="dots">...............</span>
-                  <span class="rate">{{new Number(answerBack.SleepRatio).toFixed(1)}}%</span>
+                  <span class="rate">{{new Number(answerBack.ratio.SleepRatio).toFixed(1)}}%</span>
                 </li>
                 <li>
-                  <span class="option">佛系代表</span>
+                  <span class="option">{{this.answer[3][answerBack.answer.people_set][0].split('.')[1]}}</span>
                   <span class="dots">...............</span>
-                  <span class="rate">{{new Number(answerBack.PSRatio).toFixed(1)}}%</span>
+                  <span class="rate">{{new Number(answerBack.ratio.PSRatio).toFixed(1)}}%</span>
                 </li>
                 <li>
-                  <span class="option">哪吒大闹东宫</span>
+                  <span class="option">{{this.answer[4][answerBack.answer.movie].split('.')[1]}}</span>
                   <span class="dots">...............</span>
-                  <span class="rate">{{new Number(answerBack.MovieRatio).toFixed(1)}}%</span>
+                  <span class="rate">{{new Number(answerBack.ratio.MovieRatio).toFixed(1)}}%</span>
                 </li>
               </ul>
             </div>
@@ -78,7 +76,11 @@
 import { mapGetters } from "vuex";
 import html2canvas from "html2canvas";
 import { setTimeout } from "timers";
-import { SET_TEST_AGAIN ,CHANGE_USER_NAME} from '../store/type/mutations'
+import {
+  SET_TEST_AGAIN,
+  CHANGE_USER_NAME,
+  FETCH_OLD_ANSWER
+} from "../store/type/mutations";
 
 export default {
   methods: {
@@ -89,33 +91,44 @@ export default {
       this.$nextTick(function() {
         html2canvas(this.$refs.screenshot, {
           backgroundColor: "#f7f0de",
-          y: 130,
+          y: 160,
+          x:30,
           useCORS: true
         }).then(canvas => {
-          this.$refs.containshot.append(canvas);
-          let link = document.createElement("a");
-          link.href = canvas.toDataURL();
-          link.setAttribute("download", "图片canvas.png");
-          link.style.display = "none";
-          document.body.appendChild(link);
-          link.touchstart();
-         
-        });
-      });
-      setTimeout(function() {
+        
+          let image = new Image();
+          image.width = 320;
+          image.src = canvas.toDataURL("image/png");
+          image.onload = function() {
+            alert("长按图片保存");
+          };
+
+          this.$refs.containshot.append(image);
           this.isShare = true;
           this.isShow = true;
           this.isMask = false;
+        });
+      });
+
+      setTimeout(function() {
         let node = document.getElementsByClassName("containshot")[0];
-        node.removeChild(node.childNodes[0]);
-      }, 2000);
+        let child = node.getElementsByTagName("img")[0];
+
+        console.log(node, child);
+        if (child) {
+          node.removeChild(child);
+        }
+      },5000);
     },
-    focus() {
-      this.$refs.input.value = "";
-    },
+    // focus() {
+    //   this.$refs.input.value = "";
+    // },
     testAgain() {
-      this.$store.commit(SET_TEST_AGAIN)
+      this.$store.commit(SET_TEST_AGAIN);
       this.$router.push({ name: "question" });
+    },
+    refresh() {
+     this.$store.dispatch(FETCH_OLD_ANSWER)
     }
   },
   data() {
@@ -123,16 +136,19 @@ export default {
       isShare: true,
       isShow: true,
       isMask: false,
-      model:this.$store.state.judge.user_name
+      model: this.$store.state.judge.user_name
     };
   },
   computed: {
-    ...mapGetters(["answerBack",'choosedNum','choosedList','questionIndex'])
-    
+    ...mapGetters(["answerBack", "choosedNum", "choosedList", "questionIndex",'answer'])
   },
   watch: {
-    model(newValue,oldValue) {
-      this.$store.commit(CHANGE_USER_NAME,newValue)
+    model(newValue, oldValue) {
+      if(!oldValue){
+         this.$refs.input.value = this.model;
+      }else{
+      this.$store.commit(CHANGE_USER_NAME, newValue);
+      }
     }
   }
 };
@@ -180,7 +196,7 @@ export default {
     transform: translateX(-50%);
     height: 1500px;
     width: 635px;
-    .empty{
+    .empty {
       height: 30px;
     }
     .action {
@@ -272,13 +288,14 @@ export default {
       font-family: "themeWord";
       color: #3c260c;
       font-size: 40px;
-      margin: 0 auto;
+      margin-left:10px;
       margin-top: 50px;
       width: 500px;
     }
     .analyze li {
       margin-bottom: 45px;
       display: flex;
+      
       .option {
         position: absolute;
         background: #f5f1ee;
@@ -324,7 +341,7 @@ export default {
     height: 786px;
     position: absolute;
     z-index: 99;
-    top:8%;
+    top: 8%;
     animation: moveUp 3s 1 1.5s;
     animation-fill-mode: forwards;
   }

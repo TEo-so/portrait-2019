@@ -40,7 +40,7 @@ const mutations ={
 
 const getters = {
     judgment(){
-        return state.judgment.judgment
+        return state.judgment
     },
     user_name(){
         return state.user_name

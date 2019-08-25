@@ -60,19 +60,21 @@ export default {
 <style lang="less" scoped>
 //动画
 .animated {
-  animation: turnPage 1s 1;
+  animation: turnPage 0.8s 1;
   transform-style: preserve-3d;
   backface-visibility: hidden;
 }
 .page {
   width: 700px;
-  height: 970px;
+  height: 890px;
   transform-origin: 0 10%;
   background: #fff6e3;
   position: relative;
-  top: 55px;
+  top:35px;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
 }
 @keyframes turnPage {
   0% {
@@ -84,7 +86,17 @@ export default {
     -webkit-transform: rotateY(-90deg);
   }
 }
+@media only screen and (min-width: 375px) and (max-width: 767px) {
+   .box{
+     bottom:18%
+   }
+}
 
+@media screen and  (min-height: 767px) {
+   .box{
+     bottom:18%
+   }
+}
 .question {
   z-index: 1;
   position: absolute;
@@ -95,7 +107,7 @@ export default {
   background: #fff4d2;
   perspective: 3000px;
   .box {
-    bottom:8%;
+    bottom:7%;
     background: url("~@/assets/images/questionBox.png");
     background-size: 100%;
     width: 738px;

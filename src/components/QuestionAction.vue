@@ -1,7 +1,7 @@
 <template>
   <div class="action">
     <div class="back">
-      <p v-if="index == 1 ">首页</p>
+      <p v-if="index == 1 " @touchstart="toHome()">首页</p>
       <p v-else @touchstart="reduceIndex()">上一题</p>
     </div>
     <div class="next">
@@ -28,30 +28,29 @@ export default {
       this.$emit("turnPage");
       setTimeout(() => {
         this.$store.commit(ADD_INDEX, choosedNum);
-      }, 600);
+      },500);
     },
     reduceIndex() {
       this.$store.commit(REDUCE_INDEX);
     },
-    // submmit(resultToBack){
-    //   this.$store.dispatch( FETCH_FIRST_ANSWER, resultToBack)
+    // submit(){
+      
     //   this.$router.push({name:'loading'})
     // }
     submit() {
       let eat = this.choosedList[1].toString();
       let exercise = this.choosedList[2].toString();
       let sleep = this.choosedList[3].toString();
-      let peopel_set = this.choosedList[4].toString();
+      let people_set = this.choosedList[4].toString();
       let movie = this.choosedList[5].toString();
       let user_name =this.user_name
       let judgment = this.$store.state.judge.judgment.judgment
       console.log(judgment)
-      console.log(this.$store.state)
       let resultToBack = {
         eat,
         exercise,
         sleep,
-        peopel_set,
+        people_set,
         movie,
         user_name,
         judgment
@@ -59,6 +58,9 @@ export default {
       console.log(resultToBack);
       this.$router.push({ name: "loading" });
       this.$store.dispatch( FETCH_FIRST_ANSWER, resultToBack)
+    },
+    toHome(){
+        this.$router.push({ name: "home" });
     }
   },
   computed: {
