@@ -95,7 +95,7 @@ export default {
       this.$nextTick(function() {
         html2canvas(this.$refs.screenshot, {
           backgroundColor: "#f7f0de",
-          y: 160,
+          y:170,
           x:30,
           useCORS: true
         }).then(canvas => {
@@ -319,7 +319,7 @@ export default {
     }
     .end {
       font-family: "themeWord";
-      width: 240px;
+      width: 300px;
       margin: 0 auto;
       margin-top: 10px;
       padding-bottom: 80px;
