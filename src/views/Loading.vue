@@ -5,7 +5,7 @@
       <p class="loadWords">画像绘制中 ...</p>
       <div class="result">
         <div class="contain">
-          <div class="empty"></div>
+          <div class="empty"></div> 
           <div class="action">
             <div class="testAgain" @click="testAgain"></div>
             <div class="refresh" @click="refresh"></div>

@@ -19,23 +19,24 @@ export default {
   },
   methods:{
     getEntrance(){
-      let judgment = this.judgment
-      console.log(judgment)
-      console.log(judgment.judgment)
-     if(judgment){
-      if(judgment.judgment == "0" ){
-        this.$router.push({name:'question'})
-      }else if(judgment.judgment == "1") {
-        this.$router.push({name:'loading'})
-        this.$store.dispatch(FETCH_OLD_ANSWER)
-      }else{
-        alert("未获取到用户信息")
-        return
-      }
-    } else{
-        alert("您的网络有问题哦")
-        return
-      }
+    //   let judgment = this.judgment
+    //   console.log(judgment)
+    //   console.log(judgment.judgment)
+    //  if(judgment){
+    //   if(judgment.judgment == "0" ){
+    //     this.$router.push({name:'question'})
+    //   }else if(judgment.judgment == "1") {
+    //     this.$router.push({name:'loading'})
+    //     this.$store.dispatch(FETCH_OLD_ANSWER)
+    //   }else{
+    //     alert("未获取到用户信息")
+    //     return
+    //   }
+    // } else{
+    //     alert("您的网络有问题哦")
+    //     return
+    //   }
+    this.$router.push({name:'question'})
     }
   },
   created(){
