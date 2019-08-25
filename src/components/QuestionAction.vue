@@ -36,7 +36,7 @@ export default {
     // submit(){
       
     //   this.$router.push({name:'loading'})
-    // }
+    // },
     submit() {
       let eat = this.choosedList[1].toString();
       let exercise = this.choosedList[2].toString();

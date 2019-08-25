@@ -7,13 +7,16 @@
         <div class="contain">
           <div class="empty"></div> 
           <div class="action">
-            <div class="testAgain" @click="testAgain"></div>
+            <router-link to ="/question">
+              <div class="testAgain" @click="testAgain"></div>
+            </router-link>
+            
             <div class="refresh" @click="refresh"></div>
           </div>
           <div ref="screenshot" class="screenshot">
             <div class="nickname">
               <div class="left">
-                <input class="name" ref="input" @focus="focus" :placeholder = model />
+                <input class="name" ref="input" :placeholder = model />
                 <p class="motify" v-if="isShow">(点击可修改分享时昵称)</p>
               </div>
               <div class="right">的画像</div>
@@ -79,9 +82,10 @@ import { setTimeout } from "timers";
 import {
   SET_TEST_AGAIN,
   CHANGE_USER_NAME,
-  FETCH_OLD_ANSWER
 } from "../store/type/mutations";
-
+import {
+   FETCH_OLD_ANSWER
+}from '../store/type/actions'
 export default {
   methods: {
     getImage() {
@@ -120,12 +124,10 @@ export default {
         }
       },5000);
     },
-    // focus() {
-    //   this.$refs.input.value = "";
-    // },
+   
     testAgain() {
       this.$store.commit(SET_TEST_AGAIN);
-      this.$router.push({ name: "question" });
+    
     },
     refresh() {
      this.$store.dispatch(FETCH_OLD_ANSWER)
@@ -244,7 +246,7 @@ export default {
         input {
           background: none;
           width: 300px;
-          font-family: "themeWord";
+          font-family: "no";
           color: #dcbb94;
           font-size: 50px;
           overflow: hidden;
@@ -288,7 +290,7 @@ export default {
       font-family: "themeWord";
       color: #3c260c;
       font-size: 40px;
-      margin-left:10px;
+      margin-left:15px;
       margin-top: 50px;
       width: 500px;
     }
