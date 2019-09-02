@@ -44,7 +44,7 @@ export default {
       let people_set = this.choosedList[4].toString();
       let movie = this.choosedList[5].toString();
       let user_name =this.user_name
-      let judgment = this.$store.state.judge.judgment.judgment
+      let judgment = this.$store.state.question.judgment.judgment
       console.log(judgment)
       let resultToBack = {
         eat,

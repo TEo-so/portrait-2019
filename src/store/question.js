@@ -5,15 +5,19 @@ import {
     SET_FIRST_ANSWER,
     SET_OLD_ANSWER,
     SET_TEST_AGAIN,
-    
+    CHANGE_USER_NAME,
+    SET_JUDGEMENT
+
 } from './type/mutations'
 
 import {
     FETCH_FIRST_ANSWER, FETCH_OLD_ANSWER,
+    FETCH_JUDGEMENT,
 } from './type/actions'
 
 import {
-    ResultService
+    ResultService,
+    JudgeService
 } from '../common/service/api.js'
 const initialState = {
     questionIndex: 1,
@@ -36,8 +40,10 @@ const initialState = {
     choosedNum: null,
     choosedList: [],
     answerBack: {},
- 
-  
+    user_name: localStorage.getItem('user_name'),
+    judgment: null,
+
+
 }
 
 const state = { ...initialState }
@@ -70,18 +76,26 @@ const mutations = {
     [SET_OLD_ANSWER](state, data) {
         state.answerBack = data
     },
-    [SET_TEST_AGAIN](state){
+    [SET_TEST_AGAIN](state) {
         state.questionIndex = 1
         state.choosedList = []
         state.choosedNum = null
-        
-        
-       
-       
+        state.judgment.judgment += 1
+        console.log(state.judgment)
+        console.log(state.judgment.judgment)
+
     },
+    [SET_JUDGEMENT](state, data) {
+        state.judgment = data
+
+    },
+    [CHANGE_USER_NAME](state, data) {
+        state.user_name = data
+    }
 
 
 }
+
 
 const actions = {
     async[FETCH_FIRST_ANSWER]({ commit }, params) {
@@ -95,7 +109,12 @@ const actions = {
         let { data } = await ResultService.getOldAnswer()
         console.log(data)
         commit(SET_OLD_ANSWER, data)
-    }
+    },
+    async[FETCH_JUDGEMENT]({ commit }) {
+        let { data } = await JudgeService.getJudge()
+        console.log(data)
+        commit(SET_JUDGEMENT, data)
+    },
 
 }
 
@@ -109,13 +128,20 @@ const getters = {
     answerBack() {
         return state.answerBack
     },
-    questionIndex(){
+    questionIndex() {
         return state.questionIndex
     },
-    answer(){
+    answer() {
         return state.answer
+    },
+    judgment(){
+        return state.judgment
+    },
+    user_name(){
+        return state.user_name
     }
-  
+   
+
     // resultToBack() {
     //     console.log(state.choosedList)
     //     let eat = state.choosedList[1]

@@ -1,13 +1,21 @@
 <template>
   <div class="answer">
     <ul class="type1" v-if="isType1">
-      <li v-for="(item,index) in answer[answerIndex-1]" :key="index-1" @touchstart="choose(index-1)">
+      <li
+        v-for="(item,index) in answer[answerIndex-1]"
+        :key="index-1"
+        @touchstart="choose(index-1)"
+      >
         <p :class="{'choosed':choosedNum == index-1 }">{{item}}</p>
       </li>
     </ul>
 
     <ul class="type2" v-else>
-      <li v-for="(item,index) in answer[answerIndex-1]" :key="index-1" @touchstart="choose(index-1)">
+      <li
+        v-for="(item,index) in answer[answerIndex-1]"
+        :key="index-1"
+        @touchstart="choose(index-1)"
+      >
         <div>
           <img :src="item[1]" />
         </div>
@@ -41,8 +49,8 @@ export default {
         this.answerIndex == 5
       ) {
         return true;
-      }else{
-        return false
+      } else {
+        return false;
       }
     }
   },
@@ -67,12 +75,14 @@ export default {
 .type1 li {
   margin-bottom: 60px;
   white-space: nowrap;
+  p {
+    letter-spacing: 4px;
+  }
 }
 .type2 {
   display: flex;
   flex-wrap: wrap;
   margin-top: -40px;
- 
 
   li {
     display: flex;
@@ -87,6 +97,7 @@ export default {
     }
     p {
       white-space: nowrap;
+      letter-spacing: 4px;
     }
   }
 }

@@ -5,18 +5,18 @@
       <p class="loadWords">画像绘制中 ...</p>
       <div class="result">
         <div class="contain">
-          <div class="empty"></div> 
+          <div class="empty"></div>
           <div class="action">
-            <router-link to ="/question">
-              <div class="testAgain" @click="testAgain"></div>
+            <router-link to="/question">
+              <div class="testAgain" @click="testAgain()"></div>
             </router-link>
-            
+
             <div class="refresh" @click="refresh"></div>
           </div>
           <div ref="screenshot" class="screenshot">
             <div class="nickname">
               <div class="left">
-                <input class="name" ref="input" :placeholder = model />
+                <input class="name" ref="input" :placeholder="model" />
                 <p class="motify" v-if="isShow">(点击可修改分享时昵称)</p>
               </div>
               <div class="right">的画像</div>
@@ -34,7 +34,9 @@
                   <span class="rate">{{new Number(answerBack.ratio.EatRatio).toFixed(1)}}%</span>
                 </li>
                 <li>
-                  <span class="option">{{this.answer[1][answerBack.answer.exercise][0].split('.')[1]}}</span>
+                  <span
+                    class="option"
+                  >{{this.answer[1][answerBack.answer.exercise][0].split('.')[1]}}</span>
                   <span class="dots">...............</span>
                   <span class="rate">{{new Number(answerBack.ratio.ExerciseRatio).toFixed(1)}}%</span>
                 </li>
@@ -44,7 +46,9 @@
                   <span class="rate">{{new Number(answerBack.ratio.SleepRatio).toFixed(1)}}%</span>
                 </li>
                 <li>
-                  <span class="option">{{this.answer[3][answerBack.answer.people_set][0].split('.')[1]}}</span>
+                  <span
+                    class="option"
+                  >{{this.answer[3][answerBack.answer.people_set][0].split('.')[1]}}</span>
                   <span class="dots">...............</span>
                   <span class="rate">{{new Number(answerBack.ratio.PSRatio).toFixed(1)}}%</span>
                 </li>
@@ -79,13 +83,8 @@
 import { mapGetters } from "vuex";
 import html2canvas from "html2canvas";
 import { setTimeout } from "timers";
-import {
-  SET_TEST_AGAIN,
-  CHANGE_USER_NAME,
-} from "../store/type/mutations";
-import {
-   FETCH_OLD_ANSWER
-}from '../store/type/actions'
+import { SET_TEST_AGAIN, CHANGE_USER_NAME } from "../store/type/mutations";
+import { FETCH_OLD_ANSWER } from "../store/type/actions";
 export default {
   methods: {
     getImage() {
@@ -94,12 +93,11 @@ export default {
       this.isMask = true;
       this.$nextTick(function() {
         html2canvas(this.$refs.screenshot, {
-          backgroundColor: "#f7f0de",
-          y:170,
-          x:30,
+          backgroundColor: "#F7F0DE",
+          y: 170,
+          x: 30,
           useCORS: true
         }).then(canvas => {
-        
           let image = new Image();
           image.width = 320;
           image.src = canvas.toDataURL("image/png");
@@ -115,6 +113,9 @@ export default {
       });
 
       setTimeout(function() {
+        this.isShare = true;
+        this.isShow = true;
+        this.isMask = false;
         let node = document.getElementsByClassName("containshot")[0];
         let child = node.getElementsByTagName("img")[0];
 
@@ -122,15 +123,14 @@ export default {
         if (child) {
           node.removeChild(child);
         }
-      },5000);
+      }, 5000);
     },
-   
+
     testAgain() {
       this.$store.commit(SET_TEST_AGAIN);
-    
     },
     refresh() {
-     this.$store.dispatch(FETCH_OLD_ANSWER)
+      this.$store.dispatch(FETCH_OLD_ANSWER);
     }
   },
   data() {
@@ -138,18 +138,24 @@ export default {
       isShare: true,
       isShow: true,
       isMask: false,
-      model: this.$store.state.judge.user_name
+      model: this.$store.state.question.user_name
     };
   },
   computed: {
-    ...mapGetters(["answerBack", "choosedNum", "choosedList", "questionIndex",'answer'])
+    ...mapGetters([
+      "answerBack",
+      "choosedNum",
+      "choosedList",
+      "questionIndex",
+      "answer"
+    ])
   },
   watch: {
     model(newValue, oldValue) {
-      if(!oldValue){
-         this.$refs.input.value = this.model;
-      }else{
-      this.$store.commit(CHANGE_USER_NAME, newValue);
+      if (!oldValue) {
+        this.$refs.input.value = this.model;
+      } else {
+        this.$store.commit(CHANGE_USER_NAME, newValue);
       }
     }
   }
@@ -175,11 +181,13 @@ export default {
   }
 }
 .containshot {
-  width: 605px;
+  width: 660px;
   position: fixed;
+  background: #f7f0de;
   bottom: 40px;
   z-index: 199;
-  padding-left: 70px;
+  padding-left:20px;
+  margin-left: 50px;
 }
 .mask {
   filter: grayscale(70%);
@@ -290,14 +298,15 @@ export default {
       font-family: "themeWord";
       color: #3c260c;
       font-size: 40px;
-      margin-left:15px;
+      width: 530px;
+      margin: 0 auto;
       margin-top: 50px;
       width: 500px;
     }
     .analyze li {
       margin-bottom: 45px;
       display: flex;
-      
+
       .option {
         position: absolute;
         background: #f5f1ee;
