@@ -22,7 +22,7 @@ import {
 const initialState = {
     questionIndex: 1,
     content: [
-        ['刚刚过去的中秋', '你最喜欢的月饼口味？'],
+        ['中秋即将来临', '你最喜欢的月饼口味？'],
         ['在空闲时间，你会选', '哪种运动放松自己？'],
         ['你最习惯', '在哪个时间段睡觉？'],
         ['对自己的', '人设定位是什么？'],
@@ -134,13 +134,13 @@ const getters = {
     answer() {
         return state.answer
     },
-    judgment() {
+    judgment(){
         return state.judgment
     },
-    user_name() {
+    user_name(){
         return state.user_name
     }
-
+   
 
     // resultToBack() {
     //     console.log(state.choosedList)
