@@ -5,11 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0"user-scalable=0>
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title>portrait-2019</title>
+    <title>邮子画像</title>
      <script>
       const token = document.location.hash.split('#/?token=')[1]
     if ((!localStorage.getItem('id_token') || parseInt(localStorage.getItem('exp')) < Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 2) && !token) {
-      window.location.href = 'https://wx.idsbllp.cn/MagicLoop/index.php?s=/addon/Api/Api/oauth&redirect=https://wx.idsbllp.cn/cq_impress/jwt'
+      window.location.href = 'https://wx.redrock.team/MagicLoop/index.php?s=/addon/Api/Api/oauth&redirect=https://wx.redrock.team/cq_impress/jwt'
     }
     if (token && token.length) {
       document.location.hash = '#/'
