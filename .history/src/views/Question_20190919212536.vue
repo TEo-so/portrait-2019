@@ -71,9 +71,10 @@ export default {
   transform-origin: 0 10%;
   background: #fff6e3;
   position: relative;
-  top: 35px;
+  top:35px;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
+
 }
 @keyframes turnPage {
   0% {
@@ -86,6 +87,7 @@ export default {
   }
 }
 
+
 .question {
   z-index: 1;
   position: absolute;
@@ -96,17 +98,16 @@ export default {
   background: #fff4d2;
 
   .box {
-    top: 30px;
+    top:30px;
     background: url("~@/assets/images/questionBox.png");
     background-size: 100%;
     width: 738px;
     height: 1040px;
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
     transform-style: preserve-3d;
     transform: perspective(2000px);
 
@@ -114,7 +115,7 @@ export default {
       display: flex;
       align-items: center;
       position: relative;
-      top: -40px;
+      top:-40px;
       background-size: 100%;
 
       img {
@@ -128,7 +129,7 @@ export default {
         font-size: 60px;
         font-weight: 500;
         position: relative;
-        top: 5px;
+        top:5px;
         right: 170px;
         z-index: 5;
       }

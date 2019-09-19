@@ -299,7 +299,7 @@ export default {
       color: #3c260c;
       font-size: 40px;
       width: 550px;
-      margin-left: 20px;
+      margin: 0 auto;
       margin-top: 50px;
       width: 500px;
     }

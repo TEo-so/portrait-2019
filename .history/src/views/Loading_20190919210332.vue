@@ -186,7 +186,7 @@ export default {
   background: #f7f0de;
   bottom: 40px;
   z-index: 199;
-  padding-left: 20px;
+  padding-left:20px;
   margin-left: 50px;
 }
 .mask {
@@ -298,8 +298,8 @@ export default {
       font-family: "themeWord";
       color: #3c260c;
       font-size: 40px;
-      width: 550px;
-      margin-left: 20px;
+      width: 530px;
+      margin: 0 auto;
       margin-top: 50px;
       width: 500px;
     }
