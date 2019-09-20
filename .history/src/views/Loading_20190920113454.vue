@@ -124,9 +124,9 @@ export default {
         let child = node.getElementsByTagName("img")[0];
 
         console.log(node, child);
-        if (child) {
-          node.removeChild(child);
-        }
+        // if (child) {
+        //   node.removeChild(child);
+        // }
       }, 5000);
     },
 

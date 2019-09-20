@@ -77,9 +77,7 @@
         </div>
       </div>
     </div>
-    <div ref="containshot" class="containshot">
-      <div ref="inner" class="inner"></div>
-    </div>
+    <div ref="containshot" class="containshot"></div>
   </div>
 </template>
 
@@ -98,7 +96,7 @@ export default {
       this.$nextTick(function() {
         html2canvas(this.$refs.screenshot, {
           backgroundColor: "#F7F0DE",
-          y: 180,
+          y: 170,
           x: 30,
           useCORS: true
         }).then(canvas => {
@@ -109,7 +107,7 @@ export default {
             alert("长按图片保存");
           };
 
-          this.$refs.inner.append(image);
+          this.$refs.containshot.append(image);
           this.isShare = true;
           this.isShow = true;
           this.isMask = false;
@@ -191,7 +189,7 @@ export default {
   bottom: 40px;
   z-index: 199;
   padding-left: 20px;
-  margin-left: 30px;
+  margin-left: 50px;
 }
 .mask {
   filter: grayscale(70%);
@@ -210,10 +208,8 @@ export default {
     transform: translateX(-50%);
     height: 1500px;
     width: 635px;
-    .inner {
-      width: 635px;
-      margin: 0 auto;
-    }
+    margin: 0 auto;
+
     .empty {
       height: 30px;
     }

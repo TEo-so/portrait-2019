@@ -98,7 +98,7 @@ export default {
       this.$nextTick(function() {
         html2canvas(this.$refs.screenshot, {
           backgroundColor: "#F7F0DE",
-          y: 180,
+          y: 170,
           x: 30,
           useCORS: true
         }).then(canvas => {
@@ -191,7 +191,7 @@ export default {
   bottom: 40px;
   z-index: 199;
   padding-left: 20px;
-  margin-left: 30px;
+  margin-left: 50px;
 }
 .mask {
   filter: grayscale(70%);

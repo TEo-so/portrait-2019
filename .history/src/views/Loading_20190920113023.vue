@@ -124,9 +124,9 @@ export default {
         let child = node.getElementsByTagName("img")[0];
 
         console.log(node, child);
-        if (child) {
-          node.removeChild(child);
-        }
+        // if (child) {
+        //   node.removeChild(child);
+        // }
       }, 5000);
     },
 
@@ -191,7 +191,7 @@ export default {
   bottom: 40px;
   z-index: 199;
   padding-left: 20px;
-  margin-left: 30px;
+  margin-left: 50px;
 }
 .mask {
   filter: grayscale(70%);
