@@ -280,17 +280,20 @@ export default {
       font-size: 30px;
       margin-top: 45px;
       line-height: 45px;
-      text-align: justify;
-      letter-spacing: 3px;
-      text-justify: inter-ideograph;
       p span {
         height: 45px;
         line-height: 45px;
         width: 530px;
         text-align: justify;
         display: inline-block;
-        letter-spacing: 5px;
+        text-align: justify;
         text-justify: inter-ideograph;
+      }
+      p span:after {
+        content: " ";
+        display: inline-block;
+        width: 100%;
+        height: 0px;
       }
     }
 

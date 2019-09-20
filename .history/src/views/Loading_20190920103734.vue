@@ -280,16 +280,9 @@ export default {
       font-size: 30px;
       margin-top: 45px;
       line-height: 45px;
-      text-align: justify;
-      letter-spacing: 3px;
-      text-justify: inter-ideograph;
-      p span {
-        height: 45px;
-        line-height: 45px;
-        width: 530px;
+      p {
+        white-space: wrap;
         text-align: justify;
-        display: inline-block;
-        letter-spacing: 5px;
         text-justify: inter-ideograph;
       }
     }

@@ -22,9 +22,7 @@
               <div class="right">的画像</div>
             </div>
 
-            <p class="portrait">
-              <span>{{answerBack.ratio.description}}</span>
-            </p>
+            <p class="portrait">{{answerBack.ratio.description}}</p>
 
             <p class="subtitle">与你相同的邮子</p>
 
@@ -280,17 +278,8 @@ export default {
       font-size: 30px;
       margin-top: 45px;
       line-height: 45px;
-      text-align: justify;
-      letter-spacing: 3px;
-      text-justify: inter-ideograph;
-      p span {
-        height: 45px;
-        line-height: 45px;
-        width: 530px;
-        text-align: justify;
-        display: inline-block;
-        letter-spacing: 5px;
-        text-justify: inter-ideograph;
+      p {
+        
       }
     }
 
