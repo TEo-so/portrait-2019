@@ -81,7 +81,7 @@ const mutations = {
         state.choosedList = []
         state.choosedNum = null
         state.judgment.judgment += 1
-
+       
 
     },
     [SET_JUDGEMENT](state, data) {
@@ -100,18 +100,18 @@ const actions = {
     async[FETCH_FIRST_ANSWER]({ commit }, params) {
 
         let { data } = await ResultService.getFirstAnswer(params)
-
+        console.log(data)
         commit(SET_FIRST_ANSWER, data)
 
     },
     async[FETCH_OLD_ANSWER]({ commit }) {
         let { data } = await ResultService.getOldAnswer()
-
+        console.log(data)
         commit(SET_OLD_ANSWER, data)
     },
     async[FETCH_JUDGEMENT]({ commit }) {
         let { data } = await JudgeService.getJudge()
-
+        console.log(data)
         commit(SET_JUDGEMENT, data)
     },
 
